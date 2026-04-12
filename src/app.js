@@ -9,4 +9,7 @@ credentials:true
 }))
 
 
+import UserRoute from "./routes/User.Routes.js"
+
+app.use("/api/v1/auth",UserRoute)
 export {app}
