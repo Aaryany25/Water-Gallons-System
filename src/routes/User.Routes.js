@@ -3,6 +3,11 @@ import { RegisterUser } from "../controllers/User.Controller.js";
 
 const router = Router()
 
-router.route("/register",RegisterUser)
-
+// router.route("/register",RegisterUser)
+router.route("/register").post(RegisterUser)
+router.route("/here",(req,res)=>{
+    res.send({
+        message:"ok"
+    })
+})
 export default router

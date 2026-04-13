@@ -15,18 +15,20 @@ const UserSchema = new Schema({
         type:String,
         required:true
     },
-    address:[{
-        type:Schema.Types.ObjectId,
-        ref:"Address"
-    }],
-
+    // address:[{
+    //     type:Schema.Types.ObjectId,
+    //     ref:"Address"
+    // }],
+refreshToken:{
+    type:String
+}
 },{timestamps:true})
 
 UserSchema.pre("save",async function(next){
 if(!this.isModified("password")) return next(); 
 // Hashing the password
 this.password = await bcrypt.hash(this.password,10)
-next()
+// next()
 })
 
 UserSchema.methods.isPasswordCorrect = async function(password){

@@ -9,7 +9,12 @@ credentials:true
 }))
 
 
-import UserRoute from "./routes/User.Routes.js"
+import UserRouter from "./routes/User.Routes.js"
 
-app.use("/api/v1/auth",UserRoute)
+app.use("/user",UserRouter)
+app.get("/user",(req,res)=>{
+    res.send({
+        message:"Working tll here"
+    })
+})
 export {app}
