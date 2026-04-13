@@ -72,8 +72,25 @@ if(!CorrectPassword){
     throw new APIerror(401,"Enter Correct Password")
 }
 // generate accesstoken and refreshtoken
-// Setting up the Profile
+ const {accesstoken,refreshtoken} = await generateTokens(existUser._id)
+// Fetching the updatded User from the Model 
+const LoggedInUser = await User.findById(existUser._id).select("-password -refreshtoken")
 
+
+// Setting up the cookies 
+const options={
+    httpOnly:true,
+    secure:true
+} //This will not allow cookies to be modified from Client side
+return res
+.status(200)
+.cookie("accesstoken",accesstoken,options)
+.cookie("refreshtoken",refreshtoken,options)
+.json(
+    new APIresponse(200,{
+        user:LoggedInUser,accesstoken,refreshtoken
+    },"User LoggedIn Successfully")
+)
 }
 const AllUser =async(req,res)=>{
 const users = await User.find()
