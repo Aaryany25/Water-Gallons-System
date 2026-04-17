@@ -6,7 +6,7 @@ const OrderSchema = new Schema({
         ref:"User"
     },
     address:{
-        type:Schema.types.ObjectId,
+        type:Schema.Types.ObjectId,
         ref:"Address"
     },
     gallons:{

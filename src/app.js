@@ -8,10 +8,10 @@ app.use(cors({
 origin:process.env.CORS_ORIGIN,
 credentials:true
 }))
-app.use(cookieParser)
+app.use(cookieParser())
 
 import UserRouter from "./routes/User.Routes.js"
-import cookieParser from "cookie-parser"
+
 
 app.use("/user",UserRouter)
 app.get("/user",(req,res)=>{

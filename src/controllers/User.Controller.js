@@ -17,14 +17,14 @@ const generateTokens = async(userId)=>{
        throw new APIerror(500,"Something went Wrong while generating Tokens") 
     }
 }
-
-const RegisterUser = async (req,res) =>{
+const RegisterUser = AsyncHandler(async(req,res)=>{
 // taking the Name and Email from the frontend 
 // Check if email or name is empy or not 
 // Check if user exist with email id or not 
 // create an object in the db 
 // Check if the user is created 
 // remove the password and send the response to the user 
+
 const {name,email,password} = req.body
 if(
     [name,email,password].some((field)=>field?.trim()==="")
@@ -52,9 +52,10 @@ return res.status(201).json(
     new APIresponse(201,CreatedUser,"User Created Successfully !")
 )
 
-}
+})
 
-const LoginUser = async(req,res)=>{
+
+const LoginUser =AsyncHandler( async(req,res)=>{
 // Take email and password from frontend
 const {email,password} = req.body
 if(!email){
@@ -74,7 +75,7 @@ if(!CorrectPassword){
 // generate accesstoken and refreshtoken
  const {accesstoken,refreshtoken} = await generateTokens(existUser._id)
 // Fetching the updatded User from the Model 
-const LoggedInUser = await User.findById(existUser._id).select("-password -refreshtoken")
+const LoggedInUser = await User.findById(existUser._id).select("-password -refreshToken")
 
 
 // Setting up the cookies 
@@ -91,8 +92,9 @@ return res
         user:LoggedInUser,accesstoken,refreshtoken
     },"User LoggedIn Successfully")
 )
-}
-const AllUser =async(req,res)=>{
+})
+
+const AllUser =AsyncHandler(async(req,res)=>{
 const users = await User.find()
 users.map(id=>{
     console.log(users._id)
@@ -100,5 +102,5 @@ users.map(id=>{
 return res.status(200).json(
     new APIresponse(200,users)
 )
-}
+})
 export {RegisterUser,AllUser,LoginUser}
