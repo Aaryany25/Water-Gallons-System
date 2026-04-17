@@ -7,14 +7,14 @@ const generateTokens = async(userId)=>{
 
     try {
         const user = await User.findById(userId)
-        const accesstoken = user.generateAccesstoken()
-        const refreshtoken = user.generateRefreshToken()
-
-        user.refresh = refreshtoken
+        const accesstoken = await user.generateAccesstoken()
+        const refreshtoken = await user.generateRefreshToken()
+console.log("Clear till this point")
+        user.refreshToken = refreshtoken
         await user.save({validateBeforeSave: false })
  return {accesstoken, refreshtoken}
     } catch (error) {
-       throw new APIerror(500,"Something went Wrong while generating Tokens") 
+       throw new APIerror(500,error.message) 
     }
 }
 const RegisterUser = AsyncHandler(async(req,res)=>{
@@ -95,10 +95,8 @@ return res
 })
 
 const AllUser =AsyncHandler(async(req,res)=>{
-const users = await User.find()
-users.map(id=>{
-    console.log(users._id)
-})
+const users = await User.find().select("-password -refreshToken")
+
 return res.status(200).json(
     new APIresponse(200,users)
 )
