@@ -94,11 +94,30 @@ return res
 )
 })
 
-const AllUser =AsyncHandler(async(req,res)=>{
-const users = await User.find().select("-password -refreshToken")
+const LogoutUser=AsyncHandler(async(req,res)=>{
+    // Get the UserId from req.user
+const userId = req.user._id
+    // Update the DB by Removing the refreshToken
+    await User.findByIdAndUpdate(userId,{
+        $set:{
+            refreshToken:undefined
+        }
+    })
 
-return res.status(200).json(
-    new APIresponse(200,users)
-)
+    const options={
+        httpOnly:true,
+        secure:true
+    }
+    res.status(200)
+    .clearCookie("accesstoken",options)
+    .clearCookie("refreshtoken",options)
+    .json(
+        new APIresponse(200,"user LoggedOut Successfully 1")
+    )
+
+// Unset the Cookies
+
 })
-export {RegisterUser,AllUser,LoginUser}
+
+
+export {RegisterUser,LoginUser,LogoutUser}

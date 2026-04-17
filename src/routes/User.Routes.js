@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { AllUser, LoginUser, RegisterUser } from "../controllers/User.Controller.js";
+import { LoginUser, LogoutUser, RegisterUser } from "../controllers/User.Controller.js";
 import { VerifyToken } from "../middleware/auth.middleware.js";
 
 const router = Router()
@@ -8,5 +8,6 @@ const router = Router()
 router.route("/register").post(RegisterUser)
 router.route("/login").post(LoginUser)
 
-router.route("/here").get(VerifyToken,AllUser)
+// Authenticated Routes
+router.route("/logout").post(VerifyToken,LogoutUser)
 export default router
