@@ -11,8 +11,8 @@ credentials:true
 app.use(cookieParser())
 
 import UserRouter from "./routes/User.Routes.js"
+import AddressRouter from "./routes/Address.Routes.js"
 
-
-app.use("/user",UserRouter)
-
+app.use("/api/v1/user",UserRouter)
+app.use("/api/v1/address",AddressRouter)
 export {app}
