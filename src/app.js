@@ -14,9 +14,5 @@ import UserRouter from "./routes/User.Routes.js"
 
 
 app.use("/user",UserRouter)
-app.get("/user",(req,res)=>{
-    res.send({
-        message:"Working tll here"
-    })
-})
+
 export {app}

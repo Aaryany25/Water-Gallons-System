@@ -9,7 +9,6 @@ const generateTokens = async(userId)=>{
         const user = await User.findById(userId)
         const accesstoken = await user.generateAccesstoken()
         const refreshtoken = await user.generateRefreshToken()
-console.log("Clear till this point")
         user.refreshToken = refreshtoken
         await user.save({validateBeforeSave: false })
  return {accesstoken, refreshtoken}
@@ -119,5 +118,13 @@ const userId = req.user._id
 
 })
 
+const CurrentUser = AsyncHandler(async(req,res)=>{
+    if(!req?.user || !req.headers){
+        throw new APIerror(401,"You are Logout")
+    }
+    res.status(200).json(
+        new APIresponse(200,req?.user)
+    )
+})
 
-export {RegisterUser,LoginUser,LogoutUser}
+export {RegisterUser,LoginUser,LogoutUser,CurrentUser}
