@@ -127,4 +127,21 @@ const CurrentUser = AsyncHandler(async(req,res)=>{
     )
 })
 
-export {RegisterUser,LoginUser,LogoutUser,CurrentUser}
+const UpdateUser = AsyncHandler(async(req,res)=>{
+    const {name,email}= req.body
+    if(!name || !email){
+        throw new APIerror(401,"Field is Required")
+    }
+    await User.findByIdAndUpdate(req.user._id,{
+        $set:{
+            name,
+            email
+        }
+    },{
+        new:true
+    })
+    res.status(200).json(
+        new APIresponse(200,"User Detials Updated Successfully")
+    )
+})
+export {RegisterUser,LoginUser,LogoutUser,CurrentUser,UpdateUser}
