@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { VerifyToken } from "../middleware/auth.middleware.js";
-import { SetAddress } from "../controllers/Address.controller.js";
+import { GetUserAddress, SetAddress } from "../controllers/Address.controller.js";
 
 const router = Router()
 
@@ -8,4 +8,5 @@ const router = Router()
 router.use(VerifyToken)
 
 router.route("/SetAddress").post(SetAddress)
+router.route("/GetAddress").get(GetUserAddress)
 export default router

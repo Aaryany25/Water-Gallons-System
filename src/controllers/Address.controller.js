@@ -60,5 +60,14 @@ const SetAddress = AsyncHandler(async (req, res) => {
     );
 });
 
+const GetUserAddress =AsyncHandler(async(req,res)=>{
+    const UserAddress = await Address.find({owner=req.user.id})
 
-export {SetAddress}
+    if(UserAddress){
+        throw new APIerror(400,"Not found")
+    }
+    res.status(200).json(
+        new APIresponse(200,UserAddress,"Success!")
+    )
+})
+export {SetAddress,GetUserAddress}
