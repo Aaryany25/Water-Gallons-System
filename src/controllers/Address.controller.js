@@ -61,9 +61,9 @@ const SetAddress = AsyncHandler(async (req, res) => {
 });
 
 const GetUserAddress =AsyncHandler(async(req,res)=>{
-    const UserAddress = await Address.find({owner=req.user.id})
+    const UserAddress = await Address.find({owner:req.user.id})
 
-    if(UserAddress){
+    if(!UserAddress){
         throw new APIerror(400,"Not found")
     }
     res.status(200).json(
