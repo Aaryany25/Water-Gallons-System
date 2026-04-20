@@ -70,4 +70,9 @@ const GetUserAddress =AsyncHandler(async(req,res)=>{
         new APIresponse(200,UserAddress,"Success!")
     )
 })
+
+const SetDefaultAddress = AsyncHandler(async (req,res)=>{
+    // const isDefalut = await Address.findByIdAndUpdate(req.user._id,{})
+}
+)
 export {SetAddress,GetUserAddress}
