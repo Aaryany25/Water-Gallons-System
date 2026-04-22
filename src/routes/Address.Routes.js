@@ -1,13 +1,20 @@
 import { Router } from "express";
 import { VerifyToken } from "../middleware/auth.middleware.js";
-import { GetUserAddress, SetAddress, SetDefaultAddress } from "../controllers/Address.controller.js";
+import { 
+    deleteAddress, 
+    getAddressById, 
+    getUserAddresses, 
+    setAddress, 
+    setDefaultAddress, 
+    updateAddress 
+} from "../controllers/Address.controller.js";
 
 const router = Router()
 
-
 router.use(VerifyToken)
 
-router.route("/SetAddress").post(SetAddress)
-router.route("/GetAddress").get(GetUserAddress)
-router.route("/:addressId/default").put(SetDefaultAddress)
+router.route("/").post(setAddress).get(getUserAddresses)
+router.route("/:addressId").get(getAddressById).patch(updateAddress).delete(deleteAddress)
+router.route("/:addressId/default").put(setDefaultAddress)
+
 export default router

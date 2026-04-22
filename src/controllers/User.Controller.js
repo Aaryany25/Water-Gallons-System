@@ -2,6 +2,7 @@ import { User } from "../models/user.models.js"
 import { APIerror } from "../utils/APIerror.js"
 import { AsyncHandler } from "../utils/AsyncHandler.js"
 import { APIresponse } from "../utils/APIresponse.js"
+import { userLoginSchema, userRegisterSchema } from "../validators/user.schema.js"
 
 const generateTokens = async(userId)=>{
 
@@ -16,87 +17,80 @@ const generateTokens = async(userId)=>{
        throw new APIerror(500,error.message) 
     }
 }
-const RegisterUser = AsyncHandler(async(req,res)=>{
-// taking the Name and Email from the frontend 
-// Check if email or name is empy or not 
-// Check if user exist with email id or not 
-// create an object in the db 
-// Check if the user is created 
-// remove the password and send the response to the user 
+const registerUser = AsyncHandler(async(req,res)=>{
+    const validation = userRegisterSchema.safeParse(req.body);
+    
+    if (!validation.success) {
+        throw new APIerror(400, validation.error.errors[0].message);
+    }
 
-const {name,email,password} = req.body
-if(
-    [name,email,password].some((field)=>field?.trim()==="")
-){
-    throw new APIerror(400,"All field Required"
+    const {name, email, password} = validation.data;
+
+    const existUser = await User.findOne({email})
+
+    if(existUser){
+        throw new APIerror(409,"User Already Exist")
+    }
+
+    const user = await User.create({
+        name,
+        email,
+        password
+    })
+
+    const createdUser = await User.findById(user._id).select("-password -refreshToken")
+
+    if(!createdUser){
+         throw new APIerror(500,"Cant Registed the User")
+    }
+
+    return res.status(201).json(
+        new APIresponse(201,createdUser,"User Created Successfully !")
     )
-}
-const existUser = await User.findOne({email})
-
-if(existUser){
-    throw new APIerror(409,"User Already Exist")
-}
-
-const user = await User.create({
-    name,
-    email,
-    password
-})
-const createdUser = await User.findById(user._id).select("-password -refreshToken")
-
-if(!createdUser){
-     throw new APIerror(500,"Cant Registed the User")
-}
-return res.status(201).json(
-    new APIresponse(201,createdUser,"User Created Successfully !")
-)
-
 })
 
 
-const LoginUser =AsyncHandler( async(req,res)=>{
-// Take email and password from frontend
-const {email,password} = req.body
-if(!email){
-    throw new APIerror(409,"Email is Required")
-}
-// Check if the User exist in db or not 
-const existUser = await User.findOne({email})
-if(!existUser){
-    throw new APIerror(404,"User not found")
-}
-// Check if the password user provided is correct or not 
-const correctPassword =  await existUser.isPasswordCorrect(password)
+const loginUser = AsyncHandler( async(req,res)=>{
+    const validation = userLoginSchema.safeParse(req.body);
+    
+    if (!validation.success) {
+        throw new APIerror(400, validation.error.errors[0].message);
+    }
 
-if(!correctPassword){
-    throw new APIerror(401,"Enter Correct Password")
-}
-// generate accesstoken and refreshtoken
- const {accesstoken,refreshtoken} = await generateTokens(existUser._id)
-// Fetching the updatded User from the Model 
-const loggedInUser = await User.findById(existUser._id).select("-password -refreshToken")
+    const {email, password} = validation.data;
 
+    const existUser = await User.findOne({email})
+    if(!existUser){
+        throw new APIerror(404,"User not found")
+    }
 
-// Setting up the cookies 
-const options={
-    httpOnly:true,
-    secure:true
-} //This will not allow cookies to be modified from Client side
-return res
-.status(200)
-.cookie("accesstoken",accesstoken,options)
-.cookie("refreshtoken",refreshtoken,options)
-.json(
-    new APIresponse(200,{
-        user:loggedInUser,accesstoken,refreshtoken
-    },"User LoggedIn Successfully")
-)
+    const correctPassword =  await existUser.isPasswordCorrect(password)
+
+    if(!correctPassword){
+        throw new APIerror(401,"Enter Correct Password")
+    }
+
+    const {accesstoken,refreshtoken} = await generateTokens(existUser._id)
+    const loggedInUser = await User.findById(existUser._id).select("-password -refreshToken")
+
+    const options={
+        httpOnly:true,
+        secure:true
+    }
+
+    return res
+    .status(200)
+    .cookie("accesstoken",accesstoken,options)
+    .cookie("refreshtoken",refreshtoken,options)
+    .json(
+        new APIresponse(200,{
+            user:loggedInUser,accesstoken,refreshtoken
+        },"User LoggedIn Successfully")
+    )
 })
 
-const LogoutUser=AsyncHandler(async(req,res)=>{
-    // Get the UserId from req.user
-const userId = req.user._id
-    // Update the DB by Removing the refreshToken
+const logoutUser = AsyncHandler(async(req,res)=>{
+    const userId = req.user._id
     await User.findByIdAndUpdate(userId,{
         $set:{
             refreshToken:undefined
@@ -113,25 +107,23 @@ const userId = req.user._id
     .json(
         new APIresponse(200,"user LoggedOut Successfully 1")
     )
-
-// Unset the Cookies
-
 })
 
-const CurrentUser = AsyncHandler(async(req,res)=>{
-    if(!req?.user || !req.headers){
-        throw new APIerror(401,"You are Logout")
+const getCurrentUser = AsyncHandler(async(req,res)=>{
+    if(!req?.user){
+        throw new APIerror(401,"You are logged out")
     }
     res.status(200).json(
         new APIresponse(200,req?.user)
     )
 })
 
-const UpdateUser = AsyncHandler(async(req,res)=>{
-    const {name,email}= req.body
+const updateUser = AsyncHandler(async(req,res)=>{
+    const {name, email} = req.body
     if(!name || !email){
-        throw new APIerror(401,"Field is Required")
+        throw new APIerror(400,"Name and email are required")
     }
+
     await User.findByIdAndUpdate(req.user._id,{
         $set:{
             name,
@@ -141,7 +133,8 @@ const UpdateUser = AsyncHandler(async(req,res)=>{
         new:true
     })
     res.status(200).json(
-        new APIresponse(200,"User Detials Updated Successfully")
+        new APIresponse(200,"User details updated successfully")
     )
 })
-export {RegisterUser,LoginUser,LogoutUser,CurrentUser,UpdateUser}
+
+export {registerUser, loginUser, logoutUser, getCurrentUser, updateUser}
