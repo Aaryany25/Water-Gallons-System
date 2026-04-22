@@ -31,9 +31,9 @@ if(
     throw new APIerror(400,"All field Required"
     )
 }
-const ExistUser = await User.findOne({email})
+const existUser = await User.findOne({email})
 
-if(ExistUser){
+if(existUser){
     throw new APIerror(409,"User Already Exist")
 }
 
@@ -42,13 +42,13 @@ const user = await User.create({
     email,
     password
 })
-const CreatedUser = await User.findById(user._id).select("-password -refreshToken")
+const createdUser = await User.findById(user._id).select("-password -refreshToken")
 
-if(!CreatedUser){
+if(!createdUser){
      throw new APIerror(500,"Cant Registed the User")
 }
 return res.status(201).json(
-    new APIresponse(201,CreatedUser,"User Created Successfully !")
+    new APIresponse(201,createdUser,"User Created Successfully !")
 )
 
 })
@@ -66,15 +66,15 @@ if(!existUser){
     throw new APIerror(404,"User not found")
 }
 // Check if the password user provided is correct or not 
-const CorrectPassword =  await existUser.isPasswordCorrect(password)
+const correctPassword =  await existUser.isPasswordCorrect(password)
 
-if(!CorrectPassword){
+if(!correctPassword){
     throw new APIerror(401,"Enter Correct Password")
 }
 // generate accesstoken and refreshtoken
  const {accesstoken,refreshtoken} = await generateTokens(existUser._id)
 // Fetching the updatded User from the Model 
-const LoggedInUser = await User.findById(existUser._id).select("-password -refreshToken")
+const loggedInUser = await User.findById(existUser._id).select("-password -refreshToken")
 
 
 // Setting up the cookies 
@@ -88,7 +88,7 @@ return res
 .cookie("refreshtoken",refreshtoken,options)
 .json(
     new APIresponse(200,{
-        user:LoggedInUser,accesstoken,refreshtoken
+        user:loggedInUser,accesstoken,refreshtoken
     },"User LoggedIn Successfully")
 )
 })

@@ -73,6 +73,8 @@ const GetUserAddress =AsyncHandler(async(req,res)=>{
 
 const SetDefaultAddress = AsyncHandler(async (req,res)=>{
     // const isDefalut = await Address.findByIdAndUpdate(req.user._id,{})
+    const id = req.params
+    console.log(id)
 }
 )
-export {SetAddress,GetUserAddress}
+export {SetAddress,GetUserAddress,SetDefaultAddress}

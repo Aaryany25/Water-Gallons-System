@@ -5,7 +5,7 @@ import {AsyncHandler} from "../utils/AsyncHandler.js"
 export const VerifyToken = AsyncHandler(async (req,res,next)=>{
     try {
         
-        const token = req.cookies?.accesstoken || req.headers("Authorization")?.replace("Bearer ","")
+        const token = req.cookies?.accesstoken || req.header("Authorization")?.replace("Bearer ","")
     
         if(!token){
             throw new APIerror(401,"Unauthorised")
