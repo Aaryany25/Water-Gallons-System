@@ -16,10 +16,10 @@ const UserSchema = new Schema({
         type:String,
         required:true
     },
-    address:[{
+    address:{
         type:Schema.Types.ObjectId,
         ref:"Address"
-    }],
+    },
 refreshToken:{
     type:String
 }

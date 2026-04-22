@@ -9,5 +9,5 @@ router.use(VerifyToken)
 
 router.route("/SetAddress").post(SetAddress)
 router.route("/GetAddress").get(GetUserAddress)
-// router.route("/:adressId/default").put(SetDefaultAddress)
+router.route("/:addressId/default").put(SetDefaultAddress)
 export default router

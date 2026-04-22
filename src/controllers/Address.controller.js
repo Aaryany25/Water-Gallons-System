@@ -46,15 +46,7 @@ const SetAddress = AsyncHandler(async (req, res) => {
         owner: req.user._id
     });
 
-    // 6. Update user with new address
-    await User.findByIdAndUpdate(
-        req.user._id,
-        {
-            $push: { address: address._id }
-        },
-        { new: true }
-    );
-
+    
     res.status(200).json(
         new APIresponse(200, address, "Address added successfully")
     );
@@ -73,8 +65,37 @@ const GetUserAddress =AsyncHandler(async(req,res)=>{
 
 const SetDefaultAddress = AsyncHandler(async (req,res)=>{
     // const isDefalut = await Address.findByIdAndUpdate(req.user._id,{})
-    const id = req.params
-    console.log(id)
+    const {addressId} = req.params
+    console.log(addressId)
+    if(!addressId){
+        throw new APIerror(400,"Address Id is Required")
+    }
+    const isAddressExist = await Address.findById(addressId)
+    if(!isAddressExist){
+        throw new APIerror(404,"Address Not Found")
+    }
+     await Address.updateMany(
+    { owner: req.user._id },
+    { $set: { isDefault: false } }
+  );
+
+    const defaultAddress = await Address.findByIdAndUpdate(addressId,{
+        $set:{
+            isDefault:true
+        }
+    },{new:true})
+    // 6. Update user with new address
+    await User.findByIdAndUpdate(
+        req.user._id,
+        {
+            $push: { address: defaultAddress._id }
+        },
+        { new: true }
+    );
+
+    res.status(200).json(
+        new APIresponse(200,defaultAddress,"Address Set as Default Successfully")
+    )
 }
 )
 export {SetAddress,GetUserAddress,SetDefaultAddress}
