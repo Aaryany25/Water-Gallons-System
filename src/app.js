@@ -12,7 +12,10 @@ app.use(cookieParser())
 
 import UserRouter from "./routes/User.Routes.js"
 import AddressRouter from "./routes/Address.Routes.js"
+import OrderRouter from "./routes/Order.Routes.js"
 
-app.use("/api/v1/user",UserRouter)
-app.use("/api/v1/address",AddressRouter)
-export {app}
+app.use("/api/v1/user", UserRouter)
+app.use("/api/v1/address", AddressRouter)
+app.use("/api/v1/order", OrderRouter)
+
+export { app }
