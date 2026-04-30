@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HydroFlow - Checkout</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-variant": "#e2e2e5",
+                    "on-primary": "#ffffff",
+                    "surface-dim": "#dadadc",
+                    "on-tertiary": "#ffffff",
+                    "inverse-primary": "#aec6ff",
+                    "outline-variant": "#c1c6d7",
+                    "on-background": "#1a1c1e",
+                    "primary-fixed": "#d8e2ff",
+                    "secondary-fixed-dim": "#4cd6fb",
+                    "secondary": "#00677d",
+                    "surface-tint": "#005ac4",
+                    "surface-container": "#eeeef0",
+                    "primary-container": "#006fef",
+                    "error": "#ba1a1a",
+                    "on-tertiary-container": "#f7feff",
+                    "surface-container-highest": "#e2e2e5",
+                    "on-tertiary-fixed": "#061f23",
+                    "on-error": "#ffffff",
+                    "inverse-surface": "#2f3133",
+                    "surface": "#f9f9fc",
+                    "surface-bright": "#f9f9fc",
+                    "error-container": "#ffdad6",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#50d9fe",
+                    "on-surface": "#1a1c1e",
+                    "on-secondary-fixed-variant": "#004e5f",
+                    "primary-fixed-dim": "#aec6ff",
+                    "tertiary-fixed-dim": "#b2cbd0",
+                    "on-primary-fixed": "#001a42",
+                    "outline": "#727786",
+                    "on-secondary-fixed": "#001f27",
+                    "on-secondary-container": "#005c70",
+                    "on-tertiary-fixed-variant": "#334b4f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-mobile": "20px",
+                    "md": "16px",
+                    "2xl": "48px",
+                    "sm": "12px",
+                    "gutter": "16px",
+                    "xs": "4px",
+                    "base": "8px",
+                    "xl": "32px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "h2": ["Manrope"],
+                    "body-md": ["Manrope"],
+                    "h1": ["Manrope"],
+                    "body-lg": ["Manrope"],
+                    "label-md": ["Manrope"],
+                    "h3": ["Manrope"],
+                    "caption": ["Manrope"]
+            },
+            "fontSize": {
+                    "h2": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "h1": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "h3": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-100 dark:border-slate-800 shadow-sm flex justify-between items-center px-5 h-16 w-full">
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors rounded-full">
+<span class="material-symbols-outlined text-blue-600">arrow_back</span>
+</button>
+<h1 class="text-xl font-bold tracking-tight text-blue-600 dark:text-blue-400 font-manrope antialiased">Checkout</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-fixed">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="Close up portrait of a smiling young professional man with a clean beard and short hair in soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAp5W9IOKabF-HO2D6jM6xeRwFQwyRl8jnoIs_n1_yBOgoOykJOpyA1_bVHUaCLt8JGcU74FaRBX2AD0X0M5L8YHeu-_FXJkV1JX-RvJ8SbCgBUmdb5mRgY4-rifT7KDbYhMs5VCafF8Rr3qtqImrembczlbERb7qlhMme-Bjs26UttuC2muKG4CfgpfoHNOvC6ea-1aeNv_CIv4l566bA2yOiupvy77usXuDLcUGaLHDfGH4jk7nmGaitva1muODTKo5ylg_BKULI"/>
+</div>
+</header>
+<main class="pt-24 pb-32 px-margin-mobile max-w-lg mx-auto">
+<!-- Step Indicator -->
+<div class="flex items-center justify-between mb-xl px-2">
+<div class="flex flex-col items-center gap-base">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center text-caption">1</div>
+<span class="text-caption text-primary">Details</span>
+</div>
+<div class="h-[2px] flex-1 bg-primary mx-xs mb-6"></div>
+<div class="flex flex-col items-center gap-base">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center text-caption">2</div>
+<span class="text-caption text-primary">Payment</span>
+</div>
+<div class="h-[2px] flex-1 bg-surface-variant mx-xs mb-6"></div>
+<div class="flex flex-col items-center gap-base">
+<div class="w-8 h-8 rounded-full bg-surface-variant text-on-surface-variant flex items-center justify-center text-caption">3</div>
+<span class="text-caption text-on-surface-variant">Confirm</span>
+</div>
+</div>
+<!-- Section Title -->
+<section class="mb-lg">
+<h2 class="font-h2 text-h2 text-on-surface mb-xs">Payment Method</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Select how you'd like to pay for your hydration.</p>
+</section>
+<!-- Payment Options -->
+<section class="space-y-md mb-xl">
+<!-- Cash on Delivery (Selected) -->
+<div class="relative p-lg rounded-xl border-2 border-primary bg-primary/5 flex items-start gap-md transition-all">
+<div class="mt-1">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">radio_button_checked</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-xs">
+<span class="font-h3 text-h3 text-on-surface">Cash on Delivery</span>
+<span class="material-symbols-outlined text-primary">payments</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Pay in cash when your fresh water bottles arrive at your doorstep.</p>
+<div class="mt-md p-sm bg-primary-fixed/30 rounded-lg border border-primary-fixed flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">info</span>
+<p class="font-caption text-caption text-on-primary-fixed-variant">This is currently the only available payment method in your region.</p>
+</div>
+</div>
+</div>
+<!-- Disabled/Placeholder Options to show exclusivity -->
+<div class="p-lg rounded-xl border border-outline-variant bg-surface-container-lowest opacity-60 flex items-start gap-md">
+<div class="mt-1">
+<span class="material-symbols-outlined text-outline">radio_button_unchecked</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-xs">
+<span class="font-h3 text-h3 text-outline">Credit or Debit Card</span>
+<span class="material-symbols-outlined text-outline">credit_card</span>
+</div>
+<p class="font-caption text-caption text-outline">Coming soon to your area.</p>
+</div>
+</div>
+</section>
+<!-- Order Summary Card -->
+<section class="mb-xl">
+<div class="bg-surface-container-low rounded-xl p-lg shadow-[0_4px_20px_rgba(0,119,255,0.06)] border border-surface-variant/50">
+<h3 class="font-h3 text-h3 text-on-surface mb-md">Order Summary</h3>
+<div class="space-y-sm">
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface-variant">Standard Hydration Kit (20L x 3)</span>
+<span class="font-body-md text-body-md text-on-surface">$24.00</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface-variant">Delivery Fee</span>
+<span class="font-body-md text-body-md text-on-surface">FREE</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md text-on-surface-variant">Service Tax</span>
+<span class="font-body-md text-body-md text-on-surface">$1.20</span>
+</div>
+<div class="pt-sm mt-sm border-t border-outline-variant flex justify-between items-center">
+<span class="font-h3 text-h3 text-on-surface">Total Amount</span>
+<span class="font-h1 text-h1 text-primary">$25.20</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Trust Badge -->
+<div class="flex items-center justify-center gap-sm py-md text-on-surface-variant opacity-70">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+<span class="font-caption text-caption">Secure Transaction • HydroFlow Guarantee</span>
+</div>
+</main>
+<!-- Fixed Action Bottom Area -->
+<footer class="fixed bottom-0 left-0 w-full bg-white/80 backdrop-blur-md border-t border-slate-100 p-lg shadow-[0_-4px_20px_rgba(0,119,255,0.06)]">
+<div class="max-w-lg mx-auto flex flex-col gap-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<p class="font-caption text-caption text-on-surface-variant truncate">Delivering to: <span class="font-bold text-on-surface">Home - 452 River Valley Road...</span></p>
+</div>
+<button class="w-full bg-primary text-on-primary font-h3 text-h3 py-4 rounded-xl shadow-lg shadow-primary/20 active:scale-[0.98] transition-all flex items-center justify-center gap-md">
+                Confirm Order
+                <span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</footer>
+<!-- Suppressed Nav Shell Placeholder for Layout Integrity -->
+<div class="hidden">
+<!-- Navigation shell suppressed for transactional checkout journey -->
+</div>
+</body></html>

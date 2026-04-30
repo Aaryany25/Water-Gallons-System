@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Order History - HydroFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#e2e2e5",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#dadadc",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#aec6ff",
+                        "outline-variant": "#c1c6d7",
+                        "on-background": "#1a1c1e",
+                        "primary-fixed": "#d8e2ff",
+                        "secondary-fixed-dim": "#4cd6fb",
+                        "secondary": "#00677d",
+                        "surface-tint": "#005ac4",
+                        "surface-container": "#eeeef0",
+                        "primary-container": "#006fef",
+                        "error": "#ba1a1a",
+                        "on-tertiary-container": "#f7feff",
+                        "surface-container-highest": "#e2e2e5",
+                        "on-tertiary-fixed": "#061f23",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#2f3133",
+                        "surface": "#f9f9fc",
+                        "surface-bright": "#f9f9fc",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-container": "#50d9fe",
+                        "on-surface": "#1a1c1e",
+                        "on-secondary-fixed-variant": "#004e5f",
+                        "primary-fixed-dim": "#aec6ff",
+                        "tertiary-fixed-dim": "#b2cbd0",
+                        "on-primary-fixed": "#001a42",
+                        "outline": "#727786",
+                        "on-secondary-fixed": "#001f27",
+                        "on-secondary-container": "#005c70",
+                        "on-tertiary-fixed-variant": "#334b4f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "md": "16px",
+                        "2xl": "48px",
+                        "sm": "12px",
+                        "gutter": "16px",
+                        "xs": "4px",
+                        "base": "8px",
+                        "xl": "32px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "h2": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "h1": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "h3": ["Manrope"],
+                        "caption": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "h2": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "h1": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "h3": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "caption": ["12px", {"lineHeight": "16px", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-header {
+            backdrop-filter: blur(10px);
+        }
+        .order-card-shadow {
+            shadow: 0px 4px 20px rgba(0, 119, 255, 0.06);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body-md text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm border-b border-slate-100 flex justify-between items-center px-5 h-16 w-full font-manrope antialiased">
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors rounded-full active:opacity-80 active:scale-95">
+<span class="material-symbols-outlined text-blue-600" data-icon="menu">menu</span>
+</button>
+<h1 class="text-xl font-bold tracking-tight text-blue-600 dark:text-blue-400">HydroFlow</h1>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container">
+<img alt="User profile photo" class="w-full h-full object-cover" data-alt="Close-up professional headshot of a friendly smiling man with short hair in soft natural daylight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDz2TC-mX_PzdycMRZD9PrXJ4Nh1WwNZzgVWc2NmlvyEHsL--U-eTnrhuhakL2ZeXTbIMhEjDf8F2nCpaCe2gfCZ-Qgm-IbTJewBX3oWkk5r8u4W1ezHizNPjqqDP7U0ykP4c--sxvxyP2lWsXrnPLyiPfRFzGQGXHqU3HIet6EE8VaEycelym0J_kcgspIzEz4_qKYl_92jtGiFjfLSYfe5Vbji9ZLXQ-rY_yiwF2dn8modYJh68jHzfsZV9C-aeYQG7bh5rQEagQ"/>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-32 px-margin-mobile max-w-[1200px] mx-auto">
+<!-- Header Section -->
+<section class="mb-lg">
+<h2 class="font-h1 text-h1 text-on-background mb-xs">Order History</h2>
+<p class="font-body-md text-on-surface-variant">Review and reorder your past hydration supplies.</p>
+</section>
+<!-- Bento Grid for Order History -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- In Progress Order (Primary Feature Card) -->
+<div class="md:col-span-2 bg-white rounded-xl border border-blue-100 shadow-[0_4px_20px_rgba(0,119,255,0.06)] overflow-hidden">
+<div class="p-lg flex flex-col md:flex-row gap-lg">
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-sm">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container text-caption rounded-full font-bold uppercase tracking-wider">In Progress</span>
+<span class="text-caption text-outline">Order #HF-9421</span>
+</div>
+<h3 class="font-h3 text-h3 mb-xs">Hydration Bundle Premium</h3>
+<p class="text-body-md text-on-surface-variant mb-md">4x 15L Spring Water + 1x Reusable Glass Dispenser</p>
+<div class="mb-lg">
+<div class="flex justify-between text-caption mb-xs">
+<span class="font-semibold text-primary">Out for delivery</span>
+<span class="text-outline">ETA: 2:30 PM Today</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-primary to-secondary-container w-[75%] rounded-full"></div>
+</div>
+</div>
+</div>
+<div class="w-full md:w-32 aspect-square rounded-xl bg-blue-50 flex items-center justify-center p-4">
+<img alt="Standard Hydration Kit" class="max-w-full max-h-full drop-shadow-lg" data-alt="Clean and minimal studio photography of a large premium water bottle with clear liquid and soft blue shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgFpIV1txgDPmaSVieO1JKAfGts1g4z51Qj-D5_cLK3eXAzO0Eqxi7put6TGUUUtoNYNshiqAoitbu7BsjcG3XW-xPOGmM0zrCKEIgWLj0ARD_Xh0FBlLY7sglKu2Ols1aBQDs6wXNM8hL0p9bgBGrWpn-ie4xVeGNOQ73omY5IuofWk9ZoWOFKWtZvWEyFIMA4WmY1o20U1fskNpSurILWnMd4hc-nT-CxcWeU3qjunM7YdisRt_qbVsY6CodKhYjtHbTr1917B0"/>
+</div>
+</div>
+</div>
+<!-- Delivered Order (Standard Card) -->
+<div class="bg-white rounded-xl border border-surface-variant shadow-[0_4px_20px_rgba(0,119,255,0.06)] p-lg flex flex-col">
+<div class="flex justify-between items-start mb-md">
+<div>
+<span class="text-caption text-outline mb-xs block">October 12, 2023</span>
+<h3 class="font-label-md text-h3">6x 5L Sport Packs</h3>
+</div>
+<span class="p-2 bg-green-50 text-green-600 rounded-full">
+<span class="material-symbols-outlined" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</span>
+</div>
+<div class="flex-grow">
+<p class="text-caption text-on-surface-variant">Delivered to: Home Office (Alex Rivers)</p>
+<p class="text-label-md font-bold mt-sm text-primary">$42.00</p>
+</div>
+<button class="mt-lg w-full bg-blue-50 text-blue-600 py-3 rounded-xl font-bold hover:bg-blue-100 transition-all active:scale-95 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="replay">replay</span>
+                    Reorder
+                </button>
+</div>
+<!-- Delivered Order (Standard Card) -->
+<div class="bg-white rounded-xl border border-surface-variant shadow-[0_4px_20px_rgba(0,119,255,0.06)] p-lg flex flex-col">
+<div class="flex justify-between items-start mb-md">
+<div>
+<span class="text-caption text-outline mb-xs block">September 28, 2023</span>
+<h3 class="font-label-md text-h3">Monthly Refill Kit</h3>
+</div>
+<span class="p-2 bg-green-50 text-green-600 rounded-full">
+<span class="material-symbols-outlined" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</span>
+</div>
+<div class="flex-grow">
+<p class="text-caption text-on-surface-variant">2x 18.9L Bottles + BPA-free Pump</p>
+<p class="text-label-md font-bold mt-sm text-primary">$35.50</p>
+</div>
+<button class="mt-lg w-full bg-blue-50 text-blue-600 py-3 rounded-xl font-bold hover:bg-blue-100 transition-all active:scale-95 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="replay">replay</span>
+                    Reorder
+                </button>
+</div>
+<!-- Cancelled Order (Standard Card) -->
+<div class="bg-white rounded-xl border border-surface-variant shadow-[0_4px_20px_rgba(0,119,255,0.06)] p-lg flex flex-col opacity-80">
+<div class="flex justify-between items-start mb-md">
+<div>
+<span class="text-caption text-outline mb-xs block">September 14, 2023</span>
+<h3 class="font-label-md text-h3">10x Desktop Spritzers</h3>
+</div>
+<span class="p-2 bg-red-50 text-red-600 rounded-full">
+<span class="material-symbols-outlined" data-icon="cancel" style="font-variation-settings: 'FILL' 1;">cancel</span>
+</span>
+</div>
+<div class="flex-grow">
+<p class="text-caption text-on-surface-variant italic">Payment verification failed</p>
+<p class="text-label-md font-bold mt-sm text-outline">$89.00</p>
+</div>
+<button class="mt-lg w-full border border-outline-variant text-outline py-3 rounded-xl font-bold hover:bg-surface-container transition-all active:scale-95 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="help">help</span>
+                    Support
+                </button>
+</div>
+<!-- More Orders Link (Asymmetric Layout Element) -->
+<div class="lg:col-span-3 flex justify-center py-base">
+<button class="flex items-center gap-2 text-primary font-bold hover:gap-4 transition-all">
+                    View full archive (2022-2023)
+                    <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</main>
+<!-- FAB for Quick Reorder -->
+<button class="fixed bottom-24 right-5 w-14 h-14 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center active:scale-90 transition-transform z-40">
+<span class="material-symbols-outlined" data-icon="bolt" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</button>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 py-3 pb-safe bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-t border-slate-100 shadow-[0_-4px_20px_rgba(0,119,255,0.06)] z-50 rounded-t-2xl font-manrope text-[11px] font-medium">
+<a class="flex flex-col items-center justify-center text-slate-400 hover:text-blue-500 transition-colors" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="home">home</span>
+            Home
+        </a>
+<a class="flex flex-col items-center justify-center text-blue-600 dark:text-blue-400 bg-blue-50/50 dark:bg-blue-900/20 rounded-xl px-3 py-1 scale-90 duration-150" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="reorder" style="font-variation-settings: 'FILL' 1;">reorder</span>
+            Orders
+        </a>
+<a class="flex flex-col items-center justify-center text-slate-400 hover:text-blue-500 transition-colors" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="water_drop">water_drop</span>
+            Plan
+        </a>
+<a class="flex flex-col items-center justify-center text-slate-400 hover:text-blue-500 transition-colors" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="help_outline">help_outline</span>
+            Support
+        </a>
+</nav>
+</body></html>

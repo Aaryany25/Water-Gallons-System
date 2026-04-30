@@ -17,7 +17,7 @@ const createOrder = AsyncHandler(async (req, res) => {
     const { gallons, deliveryTime, paymentMethod, note } = validation.data;
     let addressId = validation.data.address;
     const userAddress = await Address.findOne({owner:req.user._id,isDefault:true})
-console.log(userAddress)
+
     // If no address provided, use user's default address
     if (!addressId) {
         addressId = userAddress._id;

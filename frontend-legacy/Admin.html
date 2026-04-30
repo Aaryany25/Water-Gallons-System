@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed": "#cde7ec",
+                    "on-secondary-container": "#005c70",
+                    "surface-variant": "#e2e2e5",
+                    "secondary-container": "#50d9fe",
+                    "surface-dim": "#dadadc",
+                    "outline": "#727786",
+                    "on-background": "#1a1c1e",
+                    "surface-container-high": "#e8e8ea",
+                    "inverse-on-surface": "#f0f0f3",
+                    "on-secondary-fixed": "#001f27",
+                    "on-tertiary-fixed": "#061f23",
+                    "secondary": "#00677d",
+                    "secondary-fixed": "#b3ebff",
+                    "on-secondary-fixed-variant": "#004e5f",
+                    "tertiary": "#486064",
+                    "on-primary-fixed-variant": "#004396",
+                    "on-secondary": "#ffffff",
+                    "primary-fixed": "#d8e2ff",
+                    "inverse-primary": "#aec6ff",
+                    "inverse-surface": "#2f3133",
+                    "primary-fixed-dim": "#aec6ff",
+                    "outline-variant": "#c1c6d7",
+                    "tertiary-fixed-dim": "#b2cbd0",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-container": "#f7feff",
+                    "tertiary-container": "#61797d",
+                    "primary-container": "#006fef",
+                    "on-error": "#ffffff",
+                    "surface-container": "#eeeef0",
+                    "on-surface": "#1a1c1e",
+                    "error": "#ba1a1a",
+                    "primary": "#0058bf",
+                    "surface-bright": "#f9f9fc",
+                    "on-surface-variant": "#414755",
+                    "secondary-fixed-dim": "#4cd6fb",
+                    "on-primary-container": "#fefcff",
+                    "on-primary-fixed": "#001a42",
+                    "background": "#f9f9fc",
+                    "on-primary": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "on-error-container": "#93000a",
+                    "surface-tint": "#005ac4",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-highest": "#e2e2e5",
+                    "surface-container-low": "#f3f3f6",
+                    "on-tertiary-fixed-variant": "#334b4f",
+                    "surface": "#f9f9fc"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "2xl": "48px",
+                    "md": "16px",
+                    "xl": "32px",
+                    "margin-mobile": "20px",
+                    "base": "8px",
+                    "xs": "4px",
+                    "lg": "24px",
+                    "gutter": "16px",
+                    "sm": "12px"
+            },
+            "fontFamily": {
+                    "body-md": ["Manrope"],
+                    "label-md": ["Manrope"],
+                    "caption": ["Manrope"],
+                    "body-lg": ["Manrope"],
+                    "h2": ["Manrope"],
+                    "h3": ["Manrope"],
+                    "h1": ["Manrope"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "caption": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "h2": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "h3": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "h1": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(216, 226, 255, 0.5);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen pb-32">
+<header class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg border-b border-blue-50 dark:border-slate-800 shadow-sm docked full-width top-0 sticky z-50">
+<div class="flex justify-between items-center w-full px-5 h-16 max-w-7xl mx-auto">
+<button class="text-blue-600 dark:text-blue-400 transition-colors hover:bg-blue-50/50 dark:hover:bg-slate-800 p-2 rounded-full active:scale-95 duration-150">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="text-xl font-bold tracking-tight text-blue-600 dark:text-blue-400 font-manrope antialiased">HydroFlow</h1>
+<div class="group relative">
+<div class="w-10 h-10 rounded-full bg-blue-100 overflow-hidden border-2 border-white shadow-sm cursor-pointer">
+<img alt="User Avatar" data-alt="Close up portrait of a professional office manager smiling, soft natural lighting in a modern bright office environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBL5nRtfD__Q8uNBZX2SX2zwrZiF2VOGvQuft0hY_R_MIQK3zFQ3qEXp6wo_QXFCm-5MRUJgd2KVOfPlDbYQmXgNduFOXsn09xhmLIFgUuWgcNp3iUsD0Hz47cx4IoKdCmJra6c2IocMIghKu4z4M0cwW7mBdaiXJsACDfN2zXwlaMLvBhWFcvSaVS9LcEUq8KYzVrFtwPDXrLKU_0_92FaoW_piUzb-greRNgIy-nfbCTMptyNBVQ5PD5Tewpb7NleWafBTfBkUYc"/>
+</div>
+<!-- Quick Access Block Option -->
+<div class="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-xl border border-slate-100 hidden group-hover:block z-[60] overflow-hidden">
+<div class="p-3 border-b border-slate-50">
+<p class="font-bold text-sm">Sarah Jenkins</p>
+<p class="text-xs text-on-surface-variant">Admin Manager</p>
+</div>
+<button class="w-full text-left p-3 text-sm text-error hover:bg-error-container/20 flex items-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="block">block</span>
+<span>Block User</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-margin-mobile pt-lg space-y-lg">
+<section class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="glass-card rounded-2xl p-lg shadow-[0_4px_20px_rgba(0,119,255,0.06)] flex flex-col justify-between overflow-hidden relative">
+<div class="z-10">
+<p class="font-label-md text-label-md text-on-surface-variant mb-xs">Daily Sales Summary</p>
+<h2 class="font-h1 text-h1 text-primary">$1,284.50</h2>
+<div class="flex items-center gap-xs mt-sm text-green-600 font-label-md text-caption">
+<span class="material-symbols-outlined text-[16px]" data-icon="trending_up">trending_up</span>
+<span>12% from yesterday</span>
+</div>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-10 text-primary">
+<span class="material-symbols-outlined text-[120px]" data-icon="payments">payments</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-gutter">
+<div class="glass-card rounded-2xl p-md shadow-[0_4px_20px_rgba(0,119,255,0.06)] flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-secondary text-[32px] mb-xs" data-icon="local_shipping">local_shipping</span>
+<p class="font-h2 text-h2 text-on-surface">24</p>
+<p class="font-label-md text-caption text-on-surface-variant">Active Deliveries</p>
+</div>
+<div class="glass-card rounded-2xl p-md shadow-[0_4px_20px_rgba(0,119,255,0.06)] flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-tertiary text-[32px] mb-xs" data-icon="inventory_2">inventory_2</span>
+<p class="font-h2 text-h2 text-on-surface">142</p>
+<p class="font-label-md text-caption text-on-surface-variant">Stock (20L)</p>
+</div>
+</div>
+</section>
+<section class="space-y-sm">
+<div class="flex justify-between items-center">
+<h3 class="font-h3 text-h3">Inventory Management</h3>
+<button class="text-primary font-label-md text-label-md">View All</button>
+</div>
+<div class="glass-card rounded-2xl overflow-hidden shadow-[0_4px_20px_rgba(0,119,255,0.06)]">
+<div class="p-md flex items-center gap-md">
+<div class="w-16 h-16 bg-blue-50 rounded-xl flex items-center justify-center">
+<img alt="20L Water Bottle" class="h-12 w-auto object-contain drop-shadow-md" data-alt="Large 20 liter clear plastic water cooler bottle filled with pure water, white background, soft blue studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlaU-_br2AX626c-gA56Ku26QO8ynsgeXd24CmgGWqyXhlwZdzCyqtZSmwM1DIgGltueqnbMGcVy8eGaKh4fdTMirepORcKuf1anVqMUwmQ9rNW7ueyicxEaXVUVlyUh_YjHTI7fbOnnZThn0-53dsgribiADmXzfg_ECki9iSXuYKbblP0sdU42VrWHw5Ccp0R-qJZnjk1yLUWUqbFSZNF0yH8ljnvmBsBXYgHBWuBGFqzaVdjADcM93tu-uqe0w2CFm7T-4gkOc"/>
+</div>
+<div class="flex-1">
+<p class="font-label-md text-label-md text-on-surface">Standard 20L Bottle</p>
+<div class="w-full bg-blue-100 h-2 rounded-full mt-xs overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 65%;"></div>
+</div>
+<p class="font-caption text-caption text-on-surface-variant mt-xs">65% capacity remaining</p>
+</div>
+<button class="bg-primary text-on-primary px-sm py-xs rounded-full font-label-md text-caption shadow-md active:scale-95 transition-transform">
+                        Restock
+                    </button>
+</div>
+</div>
+</section>
+<section class="space-y-sm">
+<div class="flex justify-between items-center">
+<h3 class="font-h3 text-h3">Recent Orders</h3>
+<div class="flex gap-xs">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="filter_list">filter_list</span>
+</div>
+</div>
+<div class="space-y-gutter">
+<div class="glass-card rounded-2xl p-md shadow-[0_4px_20px_rgba(0,119,255,0.06)] flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 shrink-0">
+<span class="material-symbols-outlined" data-icon="schedule">schedule</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<div>
+<p class="font-label-md text-label-md truncate">Order #8492</p>
+<p class="font-body-md text-caption text-on-surface-variant truncate">Tech Hub Plaza • 4 units</p>
+</div>
+<span class="bg-orange-50 text-orange-700 px-xs py-[2px] rounded text-[10px] font-bold uppercase tracking-wider whitespace-nowrap">Pending</span>
+</div>
+<div class="flex gap-2 mt-2">
+<button class="flex-1 bg-green-50 text-green-700 py-1.5 rounded-lg text-[11px] font-bold border border-green-100 flex items-center justify-center gap-1 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-sm" data-icon="done">done</span>
+Confirm
+</button>
+<button class="flex-1 bg-red-50 text-red-700 py-1.5 rounded-lg text-[11px] font-bold border border-red-100 flex items-center justify-center gap-1 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-sm" data-icon="close">close</span>
+Cancel
+</button>
+</div>
+</div>
+</div>
+<div class="glass-card rounded-2xl p-md shadow-[0_4px_20px_rgba(0,119,255,0.06)] flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 shrink-0">
+<span class="material-symbols-outlined" data-icon="local_shipping">local_shipping</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<div>
+<p class="font-label-md text-label-md truncate">Order #8491</p>
+<p class="font-body-md text-caption text-on-surface-variant truncate">Greenview Apts • 2 units</p>
+</div>
+<span class="bg-blue-50 text-blue-700 px-xs py-[2px] rounded text-[10px] font-bold uppercase tracking-wider whitespace-nowrap">In Transit</span>
+</div>
+<div class="flex gap-2 mt-2">
+<button class="flex-1 bg-surface-container text-on-surface-variant py-1.5 rounded-lg text-[11px] font-bold border border-outline-variant flex items-center justify-center gap-1 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span>
+Track
+</button>
+<button class="flex-1 bg-red-50 text-red-700 py-1.5 rounded-lg text-[11px] font-bold border border-red-100 flex items-center justify-center gap-1 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-sm" data-icon="close">close</span>
+Cancel
+</button>
+</div>
+</div>
+</div>
+<div class="glass-card rounded-2xl p-md shadow-[0_4px_20px_rgba(0,119,255,0.06)] flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-600 shrink-0">
+<span class="material-symbols-outlined" data-icon="check_circle">check_circle</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-start">
+<div>
+<p class="font-label-md text-label-md truncate">Order #8489</p>
+<p class="font-body-md text-caption text-on-surface-variant truncate">Central Library • 8 units</p>
+</div>
+<span class="bg-green-50 text-green-700 px-xs py-[2px] rounded text-[10px] font-bold uppercase tracking-wider whitespace-nowrap">Delivered</span>
+</div>
+<div class="flex gap-2 mt-2">
+<button class="w-full bg-blue-50 text-blue-700 py-1.5 rounded-lg text-[11px] font-bold border border-blue-100 flex items-center justify-center gap-1 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-sm" data-icon="receipt_long">receipt_long</span>
+View Receipt
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 px-2 pb-4 bg-white/90 dark:bg-slate-950/90 backdrop-blur-xl border-t border-blue-50 dark:border-slate-800 shadow-[0_-4px_20px_rgba(0,119,255,0.06)]">
+<button class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-3 py-1 hover:text-blue-500 transition-all haptic-feedback tap-highlight-none">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-manrope text-[11px] font-medium">Home</span>
+</button>
+<button class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-3 py-1 hover:text-blue-500 transition-all haptic-feedback tap-highlight-none">
+<span class="material-symbols-outlined" data-icon="water_drop">water_drop</span>
+<span class="font-manrope text-[11px] font-medium">Orders</span>
+</button>
+<button class="flex flex-col items-center justify-center text-blue-600 dark:text-blue-400 bg-blue-50/50 dark:bg-blue-900/20 rounded-2xl px-3 py-1 hover:text-blue-500 transition-all haptic-feedback tap-highlight-none">
+<span class="material-symbols-outlined" data-icon="dashboard" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-manrope text-[11px] font-medium">Admin</span>
+</button>
+<button class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-3 py-1 hover:text-blue-500 transition-all haptic-feedback tap-highlight-none">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-manrope text-[11px] font-medium">Profile</span>
+</button>
+</nav>
+</body></html>

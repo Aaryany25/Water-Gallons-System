@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>User Profile - HydroFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: #f9f9fc;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#e2e2e5",
+                        "on-primary": "#ffffff",
+                        "surface-dim": "#dadadc",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#aec6ff",
+                        "outline-variant": "#c1c6d7",
+                        "on-background": "#1a1c1e",
+                        "primary-fixed": "#d8e2ff",
+                        "secondary-fixed-dim": "#4cd6fb",
+                        "secondary": "#00677d",
+                        "surface-tint": "#005ac4",
+                        "surface-container": "#eeeef0",
+                        "primary-container": "#006fef",
+                        "error": "#ba1a1a",
+                        "on-tertiary-container": "#f7feff",
+                        "surface-container-highest": "#e2e2e5",
+                        "on-tertiary-fixed": "#061f23",
+                        "on-error": "#ffffff",
+                        "inverse-surface": "#2f3133",
+                        "surface": "#f9f9fc",
+                        "surface-bright": "#f9f9fc",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-container": "#50d9fe",
+                        "on-surface": "#1a1c1e",
+                        "on-secondary-fixed-variant": "#004e5f",
+                        "primary-fixed-dim": "#aec6ff",
+                        "tertiary-fixed-dim": "#b2cbd0",
+                        "on-primary-fixed": "#001a42",
+                        "outline": "#727786",
+                        "on-secondary-fixed": "#001f27",
+                        "on-secondary-container": "#005c70",
+                        "on-tertiary-fixed-variant": "#334b4f"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "md": "16px",
+                        "2xl": "48px",
+                        "sm": "12px",
+                        "gutter": "16px",
+                        "xs": "4px",
+                        "base": "8px",
+                        "xl": "32px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "h2": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "h1": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "label-md": ["Manrope"],
+                        "h3": ["Manrope"],
+                        "caption": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "h2": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "h1": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "h3": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "caption": ["12px", {"lineHeight": "16px", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background antialiased min-h-screen">
+<header class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md fixed top-0 w-full z-50 border-b border-slate-100 dark:border-slate-800 shadow-sm flex justify-between items-center px-5 h-16 w-full font-manrope antialiased">
+<div class="flex items-center gap-4">
+<button class="hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors p-2 rounded-full">
+<span class="material-symbols-outlined text-blue-600 dark:text-blue-400" data-icon="menu">menu</span>
+</button>
+<h1 class="text-xl font-bold tracking-tight text-blue-600 dark:text-blue-400">HydroFlow</h1>
+</div>
+<div class="flex items-center gap-3">
+<span class="hidden md:block font-label-md text-on-surface-variant">Alex Rivers</span>
+<img alt="User profile photo" class="w-10 h-10 rounded-full border-2 border-primary-container object-cover" data-alt="portrait of a young professional man with a friendly expression in a modern bright setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgTdHRhc34kXjKunGKZ402EfR-VWXXlPxLifMAFmOAyoCq3LVeub_v_Gp2yoa9HEXIO1HWGLXFf16EOGqWSlj7CGbjceGXEb-aOnAt3lhT0J4__3uhC9eoTe7NNoz2A6zRKFLPsWbW3tsBbrfiNlFISWpEsvFJE9yTgZ8SrNK1K0p__sxrpM1gjAP0nicaxfw3aspHx0z6m5XxK9D7tOxv_7qML4qtDbpSvkGFsOvDIPBiivE8Dcl04Vus2bQS98U_AnKdiRR761k"/>
+</div>
+</header>
+<main class="pt-24 pb-32 px-margin-mobile max-w-[1200px] mx-auto">
+<div class="mb-lg">
+<h2 class="font-h1 text-h1 text-on-background">Profile</h2>
+<p class="font-body-md text-on-surface-variant">Manage your account and hydration preferences</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<section class="md:col-span-8 space-y-gutter">
+<div class="bg-surface-container-lowest p-xl rounded-xl shadow-[0_4px_20px_rgba(0,119,255,0.06)] border border-outline-variant/20 relative">
+<button class="absolute top-xl right-xl flex items-center gap-base px-md py-sm bg-blue-50 text-primary font-label-md rounded-full hover:bg-blue-100 transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="edit">edit</span>
+                        Edit Profile
+                    </button>
+<div class="flex flex-col md:flex-row gap-lg items-start md:items-center mb-xl">
+<div class="relative">
+<img alt="Alex Rivers profile picture" class="w-24 h-24 rounded-full border-4 border-surface-container object-cover" data-alt="close-up portrait of a smiling person with soft natural lighting and a minimalist background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7Rrr4-TH5g944Ebskhk81OyEYT6Kuyt_aoHaWOhxEeLKpig5ukohupatKF8bIReUxdtdSP1J4wrs96LHNSSb3kXzZVx_-us3f0i7hNWkej0twgBfxDDSQ_7ZU0dxXs1fCtJdFv8TsYoVTW_uyiahWC3FH6h4n_VpjTj1S9AxjNFD_RQsjuXF6MraDNt6km2AFUTStJSOSo6TjmOtHWB5WTXBZMhrneeZW_JmszcjugzTxYajbJ2rYsZMgNX17SD3NZ5rkFwBBU5Q"/>
+<div class="absolute bottom-0 right-0 bg-primary p-xs rounded-full border-2 border-white">
+<span class="material-symbols-outlined text-white text-[16px]" data-icon="verified" data-weight="fill" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<div>
+<h3 class="font-h2 text-h2 text-on-background">Alex Rivers</h3>
+<div class="flex items-center gap-xs mt-xs">
+<span class="bg-secondary-container/20 text-on-secondary-container px-sm py-xs rounded-full text-caption">Premium Member</span>
+<span class="text-caption text-on-surface-variant ml-sm">Member since 2023</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-lg pt-lg border-t border-surface-variant">
+<div>
+<p class="font-label-md text-on-surface-variant mb-xs">Phone Number</p>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="call">call</span>
+<p class="font-body-md text-on-background">+1 (555) 012-3456</p>
+</div>
+</div>
+<div>
+<p class="font-label-md text-on-surface-variant mb-xs">Email Address</p>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" data-icon="mail">mail</span>
+<p class="font-body-md text-on-background">alex.rivers@example.com</p>
+</div>
+</div>
+<div class="sm:col-span-2">
+<p class="font-label-md text-on-surface-variant mb-xs">Primary Address</p>
+<div class="flex items-start gap-sm">
+<span class="material-symbols-outlined text-primary mt-1" data-icon="location_on">location_on</span>
+<p class="font-body-md text-on-background">742 Evergreen Terrace, Water District 4, Springfield, OR 97403</p>
+</div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-gutter">
+<a class="group bg-white p-lg rounded-xl shadow-[0_4px_20px_rgba(0,119,255,0.06)] border border-outline-variant/10 hover:border-primary-container/40 transition-all" href="#">
+<div class="flex items-center justify-between mb-md">
+<div class="w-12 h-12 bg-blue-50 text-primary rounded-xl flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="home_pin">home_pin</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</div>
+<h4 class="font-h3 text-h3 mb-xs text-on-background">Saved Addresses</h4>
+<p class="font-caption text-on-surface-variant">Manage 3 delivery locations</p>
+</a>
+<a class="group bg-white p-lg rounded-xl shadow-[0_4px_20px_rgba(0,119,255,0.06)] border border-outline-variant/10 hover:border-primary-container/40 transition-all" href="#">
+<div class="flex items-center justify-between mb-md">
+<div class="w-12 h-12 bg-blue-50 text-primary rounded-xl flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="credit_card">credit_card</span>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</div>
+<h4 class="font-h3 text-h3 mb-xs text-on-background">Payment Methods</h4>
+<p class="font-caption text-on-surface-variant">Visa ending in 4242</p>
+</a>
+</div>
+</section>
+<aside class="md:col-span-4 space-y-gutter">
+<div class="bg-primary p-lg rounded-xl text-white shadow-xl overflow-hidden relative">
+<div class="relative z-10">
+<h4 class="font-h3 text-h3 mb-md">Current Subscription</h4>
+<div class="flex items-center gap-md mb-xl">
+<span class="material-symbols-outlined text-[40px]" data-icon="water_drop">water_drop</span>
+<div>
+<p class="font-body-lg font-bold">Standard Hydration</p>
+<p class="text-white/80 font-caption">Next Delivery: Oct 24</p>
+</div>
+</div>
+<button class="w-full py-md bg-white text-primary rounded-lg font-label-md hover:bg-surface-bright transition-colors">Manage Plan</button>
+</div>
+<div class="absolute -right-8 -bottom-8 opacity-20 transform rotate-12">
+<span class="material-symbols-outlined text-[160px]" data-icon="opacity">opacity</span>
+</div>
+</div>
+<div class="bg-white p-lg rounded-xl shadow-[0_4px_20px_rgba(0,119,255,0.06)] border border-outline-variant/10">
+<h4 class="font-label-md text-on-surface-variant uppercase tracking-wider mb-md">Support</h4>
+<div class="space-y-sm">
+<button class="w-full flex items-center gap-md p-md hover:bg-surface-container-low rounded-lg transition-colors group">
+<span class="material-symbols-outlined text-primary" data-icon="help_outline">help_outline</span>
+<span class="font-body-md text-on-background">Help Center</span>
+<span class="material-symbols-outlined ml-auto text-on-surface-variant group-hover:translate-x-1 transition-transform" data-icon="chevron_right">chevron_right</span>
+</button>
+<button class="w-full flex items-center gap-md p-md hover:bg-error/5 rounded-lg transition-colors group text-error">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-body-md font-semibold">Logout</span>
+</button>
+</div>
+</div>
+</aside>
+</div>
+</main>
+<nav class="fixed bottom-0 left-0 w-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-t border-slate-100 dark:border-slate-800 shadow-[0_-4px_20px_rgba(0,119,255,0.06)] z-50 flex justify-around items-center px-4 py-3 pb-safe font-manrope text-[11px] font-medium">
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-blue-500 transition-all" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="home">home</span>
+<span>Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-blue-500 transition-all" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="reorder">reorder</span>
+<span>Orders</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-blue-500 transition-all" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="water_drop">water_drop</span>
+<span>Plan</span>
+</a>
+<a class="flex flex-col items-center justify-center text-blue-600 dark:text-blue-400 bg-blue-50/50 dark:bg-blue-900/20 rounded-xl px-3 py-1 scale-90 duration-150" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="person" data-weight="fill" style="font-variation-settings: 'FILL' 1;">person</span>
+<span>Profile</span>
+</a>
+</nav>
+</body></html>
