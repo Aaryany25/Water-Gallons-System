@@ -1,7 +1,7 @@
-import { app } from "./app.js";
 import dotenv from "dotenv"
-import connectDB from "./db/connectDB.js";
 dotenv.config()
+import { app } from "./app.js";
+import connectDB from "./db/connectDB.js";
 
 connectDB()
 .then(()=>{
@@ -10,7 +10,7 @@ app.listen(process.env.PORT,()=>{
 })
 })
 .catch((error)=>{
-console.log("Connection to MongoDB Server Failed!",error)
+console.error("Connection to MongoDB Server Failed!",error)
 })
 
 

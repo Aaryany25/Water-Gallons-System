@@ -4,6 +4,11 @@ import { AsyncHandler } from "../utils/AsyncHandler.js"
 import { APIresponse } from "../utils/APIresponse.js"
 import { userLoginSchema, userRegisterSchema } from "../validators/user.schema.js"
 
+const cookieOptions = {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production"
+}
+
 const generateTokens = async(userId)=>{
 
     try {
@@ -73,15 +78,10 @@ const loginUser = AsyncHandler( async(req,res)=>{
     const {accesstoken,refreshtoken} = await generateTokens(existUser._id)
     const loggedInUser = await User.findById(existUser._id).select("-password -refreshToken")
 
-    const options={
-        httpOnly:true,
-        secure:true
-    }
-
     return res
     .status(200)
-    .cookie("accesstoken",accesstoken,options)
-    .cookie("refreshtoken",refreshtoken,options)
+    .cookie("accesstoken",accesstoken,cookieOptions)
+    .cookie("refreshtoken",refreshtoken,cookieOptions)
     .json(
         new APIresponse(200,{
             user:loggedInUser,accesstoken,refreshtoken
@@ -97,13 +97,9 @@ const logoutUser = AsyncHandler(async(req,res)=>{
         }
     })
 
-    const options={
-        httpOnly:true,
-        secure:true
-    }
     res.status(200)
-    .clearCookie("accesstoken",options)
-    .clearCookie("refreshtoken",options)
+    .clearCookie("accesstoken",cookieOptions)
+    .clearCookie("refreshtoken",cookieOptions)
     .json(
         new APIresponse(200,"user LoggedOut Successfully 1")
     )
@@ -136,5 +132,10 @@ const updateUser = AsyncHandler(async(req,res)=>{
         new APIresponse(200,"User details updated successfully")
     )
 })
-
-export {registerUser, loginUser, logoutUser, getCurrentUser, updateUser}
+const getAllUser = AsyncHandler(async(req,res)=>{
+    const users = await User.find().select("-password -refreshToken")
+    res.status(200).json(
+        new APIresponse(200,users,"All users fetched successfully")
+    )
+})
+export {registerUser, loginUser, logoutUser, getCurrentUser, updateUser,getAllUser}
