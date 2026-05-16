@@ -2,12 +2,12 @@ import { create } from "zustand";
 import {
   loginUser,
   registerUser,
-  AllUser
+  getCurrentUser
 } from "../api/Authapi";
 
 const useAuthStore = create((set) => ({
   user: null,
-  loading: false,
+  loading: true,
   error: null,
 
   register: async (userData) => {
@@ -66,10 +66,10 @@ const useAuthStore = create((set) => ({
         error: null,
       });
 
-      const data = await AllUser(userData);
-console.log("this is being called from AuthStore ",data.data)
+      const data = await getCurrentUser(userData);
+console.log("this is being called from AuthStore ",data)
       set({
-        users: data.data,
+        user: data,
         loading: false,
       });
     } catch (error) {

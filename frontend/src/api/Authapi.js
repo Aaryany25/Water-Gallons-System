@@ -18,7 +18,7 @@ export const loginUser = async (userData) => {
   return response.data;
 };
 
-export const AllUser=async(userData)=>{
-    const response =await api.get("/user/alluser",userData);
+export const getCurrentUser=async(userData)=>{
+    const response =await api.get("/user/me",userData);
     return response.data
 }

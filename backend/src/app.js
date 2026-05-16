@@ -4,28 +4,28 @@ import cookieParser from "cookie-parser"
 
 const app = express()
 
-const allowedOrigins = (process.env.CORS_ORIGIN || "")
-  .split(",")
-  .map((origin) => origin.trim())
-  .filter(Boolean)
+// const allowedOrigins = (process.env.CORS_ORIGIN || "")
+//   .split(",")
+//   .map((origin) => origin.trim())
+//   .filter(Boolean)
 
-const corsOptions = {
-  origin: function (origin, callback) {
-    // Allow requests with no origin (like mobile apps or curl requests)
-    if (!origin) return callback(null, true);
+// const corsOptions = {
+//   origin: function (origin, callback) {
+//     // Allow requests with no origin (like mobile apps or curl requests)
+//     if (!origin) return callback(null, true);
     
-    if (allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      console.warn(`CORS blocked for origin: ${origin}`);
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
-  methods: ["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],
-}
+//     if (allowedOrigins.includes(origin)) {
+//       callback(null, true);
+//     } else {
+//       console.warn(`CORS blocked for origin: ${origin}`);
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   },
+//   credentials: true,
+//   methods: ["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],
+// }
 
-app.use(cors(corsOptions))
+app.use(cors({origin:process.env.CORS_ORIGIN, credentials:true}))
 app.use(express.json())
 app.use(cookieParser())
 

@@ -2,9 +2,9 @@ import { useMemo } from "react"
 import { cva } from "class-variance-authority";
 
 import { cn } from "../../lib/utils"
-
 import { Label } from "./label"
 import { Separator } from "./separator"
+// import * as Separator from "@base-ui/react/separator"
 
 function FieldSet({
   className,

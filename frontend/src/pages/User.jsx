@@ -24,8 +24,7 @@ function User() {
     alluser();
   }, []);
 
-  console.log(users);
-
+ 
   return (
     <div>
 

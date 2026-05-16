@@ -13,6 +13,7 @@ const generateTokens = async(userId)=>{
 
     try {
         const user = await User.findById(userId)
+        console.log("Working fine till here",user)
         const accesstoken = await user.generateAccesstoken()
         const refreshtoken = await user.generateRefreshToken()
         user.refreshToken = refreshtoken

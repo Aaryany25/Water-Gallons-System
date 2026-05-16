@@ -27,7 +27,6 @@ function Home() {
               <Button asChild size="lg" className="h-14 px-8 text-md flex rounded-xl shadow-lg shadow-primary/20 group">
                 <Link to="/place-order">
                   Order Now
-                  {/* <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" /> */}
                 </Link>
               </Button>
               {/* <Button size="lg" variant="secondary" className="h-14 px-8 text-lg rounded-xl">
