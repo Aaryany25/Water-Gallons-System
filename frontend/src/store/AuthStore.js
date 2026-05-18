@@ -4,17 +4,19 @@ import {
   registerUser,
   getCurrentUser
 } from "../api/Authapi";
+import { persist } from "zustand/middleware";
 
-const useAuthStore = create((set) => ({
+const useAuthStore = create(persist((set) => ({
   user: null,
-  loading: true,
+  isAuthenticated: false,
+  loading: false,
   error: null,
 
   register: async (userData) => {
     try {
 
       set({
-        loading: true,
+        // loading: true,
         error: null,
       });
 
@@ -34,52 +36,75 @@ const useAuthStore = create((set) => ({
 
     }
   },
+login: async (userData) => {
+  try {
 
-  login: async (userData) => {
-    try {
+    set({
+      // loading: true,
+      error: null,
+    });
 
-      set({
-        loading: true,
-        error: null,
-      });
+    const response = await loginUser(userData);
 
-      const data = await loginUser(userData);
+    console.log(response);
 
-      set({
-        user: data.user,
-        loading: false,
-      });
+    const { user, accesstoken } = response;
 
-    } catch (error) {
-
-      set({
-        error: error.response.data.message,
-        loading: false,
-      });
-
+    if (accesstoken) {
+      localStorage.setItem(
+        "accesstoken",
+        accesstoken
+      );
     }
-  },
-  alluser:async (userData)=>{
-    try {
-         set({
-        loading: true,
-        error: null,
-      });
 
-      const data = await getCurrentUser(userData);
-console.log("this is being called from AuthStore ",data)
-      set({
-        user: data,
-        loading: false,
-      });
-    } catch (error) {
-         set({
-        error: error.response.data.message,
-        loading: false,
-      });
+    set({
+      user,
+      isAuthenticated: true,
+      loading: false,
+    });
 
-    }
+  } catch (error) {
+
+    set({
+      error:
+        error.response?.data?.message ||
+        "Login failed",
+      loading: false,
+    });
+
+    throw error;
   }
-}));
+},
+  getUser: async () => {
+  try {
+
+    set({
+      loading: true,
+      error: null,
+    });
+
+    const data = await getCurrentUser();
+
+    console.log(data);
+
+    set({
+      user: data.user,
+      isAuthenticated: true,
+      loading: false,
+    });
+
+  } catch (error) {
+
+    set({
+      error:
+        error.response?.data?.message ||
+        "Failed to fetch user",
+      loading: false,
+    });
+
+    throw error;
+  }
+},
+})));
 
 export default useAuthStore;

@@ -11,6 +11,7 @@ import {  Field,
 import { useForm } from "react-hook-form"
 import useAuthStore from '../store/AuthStore'
 import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 function Signup() {
     const navigate = useNavigate()
  const {
@@ -25,7 +26,7 @@ function Signup() {
     console.log("data",data)
     useAuthStore.getState().register(data)
     .then(() => {
-      navigate("/Login")
+      navigate("/login")
     })
     .catch((error) => {
       console.log(error)
@@ -84,7 +85,7 @@ function Signup() {
          
           <Field orientation="horizontal">
             <Button type="submit">Submit</Button>
-           
+            <Button variant='outline'><Link to="/login">Login</Link></Button>
           </Field>
            {/* <FieldDescription>
             Already a User ? <Link to="/Login">Login</Link>

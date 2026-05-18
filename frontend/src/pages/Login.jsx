@@ -22,14 +22,17 @@ function Login() {
 
   const onSubmit = (data) => 
   {
-    console.log("data",data)
-    useAuthStore.getState().login(data)
-    .then(() => {
-      navigate("/User")
-    })
-    .catch((error) => {
-      console.log(error)
-    })
+    
+   try {
+     useAuthStore.getState().login(data)
+  
+       navigate("/user")
+  
+    
+  } catch (error) {
+     console.log(error)
+    
+   }
   }
   return (
     <div>

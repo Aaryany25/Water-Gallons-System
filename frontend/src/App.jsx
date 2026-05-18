@@ -9,34 +9,34 @@ import User from './pages/User'
 import Login from './pages/Login'
 import ProtectedRoute from './components/ProtectedRoute'
 import GuestRoute from './components/GuestRoute'
-import useAuthStore from './store/AuthStore'
+// import useAuthStore from './store/AuthStore'
 
 function App() {
-  const { alluser } = useAuthStore();
+  // const { alluser } = useAuthStore();
 
-  useEffect(() => {
-    alluser();
-  }, [alluser]);
+  // useEffect(() => {
+  //   alluser();
+  // }, [alluser]);
 
   return (
     <>
 <Navbar/>
       <Routes > 
 <Route path='/' element={<Home/>} />
-<Route path='/SignUp' element={
+<Route path='/signup' element={
   <GuestRoute>
     <Signup/>
   </GuestRoute>
 } />
-<Route path='/User' element={
-  <ProtectedRoute>
+<Route path='/user' element={
+  // <ProtectedRoute>
     <User/>
-  </ProtectedRoute>
+  // </ProtectedRoute>
 }/>
 <Route path='/login' element={
-  <GuestRoute>
+  // <GuestRoute>
     <Login/>
-  </GuestRoute>
+  // </GuestRoute>
 }/>
 
       </Routes>
