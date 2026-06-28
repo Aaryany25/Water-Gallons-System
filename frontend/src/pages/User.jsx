@@ -4,6 +4,10 @@ import { Card ,CardContent} from '../components/ui/card';
 
 function User() {
 
+  // const user = useAuthStore(
+  //   (state) => state.user
+  // );
+
   const getuser = useAuthStore(
     (state) => state.getUser
   );
@@ -15,6 +19,7 @@ function User() {
   // const loading = useAuthStore(
   //   (state) => state.loading
   // );
+console.log(getuser())  
 
   const error = useAuthStore(
     (state) => state.error
@@ -32,7 +37,8 @@ function User() {
 
       {/* {loading && <p>Loading...</p>} */}
 
-      {error && <p>{error}</p>}
+      {/* {error && <p>{error}</p>} */}
+      {user && <h1>Welcome {user.name}</h1>}
 
       {/* {users?.map((u) => (
         <Card className="max-w-4xl mx-auto border-none shadow-lg my-2">

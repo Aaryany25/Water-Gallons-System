@@ -20,8 +20,8 @@ export const VerifyToken = AsyncHandler(async (req,res,next)=>{
         }
 
         req.user = user
-        next
+        next()
     } catch (error) {
-        throw new APIerror(401,error.message)
+        next(new APIerror(401, error.message))
     }
 })

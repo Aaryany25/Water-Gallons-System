@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button } from "../components/ui/button"
 import {  Field,
   FieldDescription,
@@ -6,90 +6,123 @@ import {  Field,
   FieldLabel,
   FieldLegend,
   FieldSeparator,
-  FieldSet} from '../components/ui/field'
-  import { Input } from "../components/ui/input"
+  FieldSet,
+  FieldError} from '../components/ui/field'
+import { Input } from "../components/ui/input"
 import { useForm } from "react-hook-form"
 import useAuthStore from '../store/AuthStore'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+
 function Signup() {
-    const navigate = useNavigate()
- const {
+  const navigate = useNavigate()
+  const [serverError, setServerError] = useState("")
+  
+  const {
     register,
     handleSubmit,
-    watch,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm()
 
-  const onSubmit = (data) => 
-  {
-    console.log("data",data)
-    useAuthStore.getState().register(data)
-    .then(() => {
+  const onSubmit = async (data) => {
+    setServerError("")
+    try {
+      await useAuthStore.getState().register(data)
       navigate("/login")
-    })
-    .catch((error) => {
-      console.log(error)
-    })
+    } catch (error) {
+      console.error("Signup error:", error)
+      setServerError(
+        error.response?.data?.message || 
+        error.message || 
+        "Failed to register. Please check your inputs and try again."
+      )
+    }
   }
+
   return (
- <div className="w-full max-w-md border rounded px-4 py-2 mx-auto mt-10">
+    <div className="w-full max-w-md border rounded px-4 py-2 mx-auto mt-10 shadow-sm bg-card">
       <form onSubmit={handleSubmit(onSubmit)}>
         <FieldGroup>
           <FieldSet>
             <FieldLegend>Signup</FieldLegend>
             <FieldDescription>
-             To Place an Oder you need to SignUp first
+              To Place an Order you need to SignUp first
             </FieldDescription>
+            
+            {serverError && (
+              <div className="text-sm font-medium text-destructive bg-destructive/10 border border-destructive/20 rounded-lg p-2.5 my-1" role="alert">
+                {serverError}
+              </div>
+            )}
+
             <FieldGroup>
               <Field>
                 <FieldLabel htmlFor="name">
-                 Name
+                  Name
                 </FieldLabel>
                 <Input
-                type="text"         
-                         id="name"
-                         {...register("name")}
+                  type="text"         
+                  id="name"
+                  {...register("name", {
+                    required: "Name is required",
+                    minLength: { value: 2, message: "Name must be at least 2 characters" }
+                  })}
                   placeholder="Evil Rabbit"
-                  required
+                  disabled={isSubmitting}
+                  aria-invalid={!!errors.name}
                 />
+                <FieldError errors={errors.name ? [errors.name] : []} />
               </Field>
               <Field>
-                <FieldLabel htmlFor="name">
-                 Email
+                <FieldLabel htmlFor="email">
+                  Email
                 </FieldLabel>
                 <Input
-                type="email"
+                  type="email"
                   id="email"
-                   {...register("email")}
+                  {...register("email", {
+                    required: "Email is required",
+                    pattern: {
+                      value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                      message: "Please enter a valid email address"
+                    }
+                  })}
                   placeholder="Enter your email"
-                  required
+                  disabled={isSubmitting}
+                  aria-invalid={!!errors.email}
                 />
+                <FieldError errors={errors.email ? [errors.email] : []} />
               </Field>
               <Field>
-                <FieldLabel htmlFor="name">
-                 password
+                <FieldLabel htmlFor="password">
+                  Password
                 </FieldLabel>
                 <Input
-                type="password"
+                  type="password"
                   id="password"
-                  {...register("password")}
+                  {...register("password", {
+                    required: "Password is required",
+                    minLength: { value: 6, message: "Password must be at least 6 characters" }
+                  })}
                   placeholder="password"
-                  required
+                  disabled={isSubmitting}
+                  aria-invalid={!!errors.password}
                 />
+                <FieldError errors={errors.password ? [errors.password] : []} />
               </Field>
               
             </FieldGroup>
           </FieldSet>
           <FieldSeparator />
          
-          <Field orientation="horizontal">
-            <Button type="submit">Submit</Button>
-            <Button variant='outline'><Link to="/login">Login</Link></Button>
+          <Field orientation="horizontal" className="justify-between">
+            <Button type="submit" disabled={isSubmitting}>
+              {isSubmitting ? "Submitting..." : "Submit"}
+            </Button>
+            <Button variant='outline' disabled={isSubmitting}>
+              <Link to="/login">Login</Link>
+            </Button>
           </Field>
-           {/* <FieldDescription>
-            Already a User ? <Link to="/Login">Login</Link>
-            </FieldDescription> */}
         </FieldGroup>
       </form>
     </div>

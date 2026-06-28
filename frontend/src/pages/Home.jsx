@@ -1,90 +1,153 @@
 import React from 'react'
-import { ArrowRight, CheckCircle2, Truck, ShieldCheck, Clock } from 'lucide-react'
-import { Button } from '../components/ui/button'
 import { Link } from 'react-router-dom'
-import { Card, CardContent } from '../components/ui/card'
-import DotBackground from '../components/DotBackground'
-
+import ditheredImage from '../assets/dithered-image.png'
 function Home() {
   return (
-    <>
-    <DotBackground>
- <section className="relative overflow-hidden  py-12 md:py-24">
-        <div className="container mx-auto px-4  gap-12 items-center">
-          <div className="space-y-8 relative z-10">
-            <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-1.5 rounded-full border border-primary/20">
-              <CheckCircle2 className="h-4 w-4" />
-              <span className="text-sm font-semibold">Certified Pure</span>
-            </div>
-            <h1 className="text-[100vw] md:text-6xl font-extrabold tracking-tight leading-tight">
-              Pure Hydration <br /> 
-              <span className="text-primary text-5xl" >Delivered to You.</span>
-            </h1>
-            <p className="text-lg text-muted-foreground max-w-lg leading-relaxed">
-              Experience the clarity of premium filtered water. Our 20L bottles are sanitized, sealed, and delivered to your doorstep within 2 hours.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button asChild size="lg" className="h-14 px-8 text-md flex rounded-xl shadow-lg shadow-primary/20 group">
-                <Link to="/place-order">
-                  Order Now
-                </Link>
-              </Button>
-              {/* <Button size="lg" variant="secondary" className="h-14 px-8 text-lg rounded-xl">
-                View Plans
-              </Button> */}
-            </div>
+    <main className="max-w-7xl mx-auto">
+      {/* Hero Section */}
+      <section className="relative px-5 md:px-0 pt-6 pb-8 md:py-12 flex flex-col md:flex-row items-center gap-8">
+        <div className="flex-1 space-y-6 order-2 md:order-1">
+          <div className="inline-flex items-center gap-2 bg-accent/20 text-accent-foreground px-3 py-1 rounded-full border border-accent/30">
+            <span className="material-symbols-outlined text-[18px]">verified</span>
+            <span className="text-[14px] font-semibold font-sans">Certified Pure</span>
           </div>
-          <div className="relative flex justify-center items-center">
-            <div className="absolute inset-0 bg-primary/10 rounded-full blur-3xl -z-10 scale-90"></div>
-           
+          <h1 className="text-4xl md:text-[56px] font-bold leading-[1.1] text-foreground tracking-tight">
+            Pure Hydration <br className="hidden md:block"/> <span className="text-primary">Delivered to You.</span>
+          </h1>
+          <p className="text-lg text-muted-foreground max-w-lg font-sans">
+            Experience the clarity of premium filtered water. Our 20L bottles are sanitized, sealed, and delivered to your doorstep within 2 hours.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 pt-4">
+            <Link to="/user" className="bg-primary text-primary-foreground px-8 py-4 rounded-xl text-[14px] font-semibold shadow-lg shadow-primary/20 flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-95 transition-all">
+              Order Now
+              <span className="material-symbols-outlined">arrow_forward</span>
+            </Link>
+            <Link to="/user" className="bg-accent/30 text-accent-foreground px-8 py-4 rounded-xl text-[14px] font-semibold flex items-center justify-center gap-2 hover:bg-accent/50 transition-all">
+              View Plans
+            </Link>
           </div>
         </div>
-      </section>
-       <section className="py-16 bg-slate-50 dark:bg-slate-900">
-        <div className="container mx-auto px-4">
-          <Card className="max-w-4xl mx-auto border-none shadow-lg">
-            <CardContent className="p-8 md:p-12 text-center space-y-8">
-              <h2 className="text-3xl font-bold">Track Your Hydration</h2>
-              <div className="bg-white dark:bg-slate-800 p-8 rounded-2xl shadow-inner border">
-                <div className="flex justify-between items-center mb-4">
-                  <span className="font-semibold text-primary">In Delivery</span>
-                  <span className="text-sm text-muted-foreground">Arrival in 12 mins</span>
+        <div className="flex-1 relative order-1 md:order-2 w-full flex justify-center">
+          <div className="absolute inset-0 bg-blue-100/50 rounded-full blur-3xl -z-10 scale-75"></div>
+          <div className="relative group">
+            <img alt="Premium 20L Water Bottle" className="w-full max-w-sm drop-shadow-2xl transition-transform group-hover:rotate-1" src={ditheredImage}/>
+            <div className="absolute -bottom-6 -right-6 bg-white/80 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-white/40 hidden sm:block">
+              <div className="flex items-center gap-3">
+                <div className="bg-primary/10 p-2 rounded-lg text-primary">
+                  <span className="material-symbols-outlined">schedule</span>
                 </div>
-                <div className="w-full h-4 bg-slate-100 rounded-full overflow-hidden relative">
-                  <div className="h-full w-3/4 bg-gradient-to-r from-primary to-secondary rounded-full animate-pulse"></div>
-                </div>
-                <div className="flex justify-between mt-4 text-xs font-medium text-muted-foreground uppercase tracking-wider">
-                  <span>Order Placed</span>
-                  <span>Dispatched</span>
-                  <span className="text-primary font-bold">Arriving</span>
+                <div>
+                  <p className="text-[14px] font-semibold text-foreground">Quick Delivery</p>
+                  <p className="text-[12px] font-medium text-muted-foreground">Avg. 45 mins</p>
                 </div>
               </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-<section className="py-24 container mx-auto px-4">
-        <div className="relative p-8 md:p-16 rounded-[2.5rem] overflow-hidden bg-primary text-primary-foreground text-center">
-          <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
-          <div className="relative z-10 space-y-8">
-            <h2 className="text-3xl md:text-5xl font-bold">Ready for a refreshing change?</h2>
-            <p className="text-lg opacity-90 max-w-2xl mx-auto leading-relaxed">
-              Join 10,000+ satisfied households and offices today. Get your first bottle free on subscriptions.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Button variant="secondary" size="lg" className="h-14 px-10 rounded-full font-bold">
-                Start Subscription
-              </Button>
-              <Button variant="outline" size="lg" className="h-14 px-10 rounded-full bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary">
-                Quick One-Time Order
-              </Button>
             </div>
           </div>
         </div>
       </section>
-    </DotBackground>
-       
-    </>
+
+      {/* Quick Info Bento Grid */}
+      <section className="px-5 md:px-0 py-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="bg-white p-6 rounded-2xl border border-blue-50 shadow-[0_4px_20px_rgba(0,119,255,0.06)] space-y-4">
+            <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center">
+              <span className="material-symbols-outlined">high_quality</span>
+            </div>
+            <h3 className="text-xl font-semibold text-foreground">Quality Assurance</h3>
+            <p className="text-base text-muted-foreground">7-stage purification process including UV and reverse osmosis for unmatched purity.</p>
+          </div>
+          <div className="bg-white p-6 rounded-2xl border border-blue-50 shadow-[0_4px_20px_rgba(0,119,255,0.06)] space-y-4">
+            <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center">
+              <span className="material-symbols-outlined">local_shipping</span>
+            </div>
+            <h3 className="text-xl font-semibold text-foreground">Rapid Fleet</h3>
+            <p className="text-base text-muted-foreground">Real-time tracking of our local delivery partners ensuring your hydration is never delayed.</p>
+          </div>
+          <div className="bg-white p-6 rounded-2xl border border-blue-50 shadow-[0_4px_20px_rgba(0,119,255,0.06)] space-y-4">
+            <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center">
+              <span className="material-symbols-outlined">sanitizer</span>
+            </div>
+            <h3 className="text-xl font-semibold text-foreground">Eco-Sanitized</h3>
+            <p className="text-base text-muted-foreground">Environmentally friendly bottle cleaning protocols ensuring health and sustainability.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Tracker Section */}
+      <section className="px-5 md:px-0 py-8 mx-5 md:mx-0">
+        <div className="bg-muted p-8 rounded-3xl max-w-4xl mx-auto text-center space-y-6">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground tracking-tight">Track Your Hydration</h2>
+          <div className="bg-white p-8 rounded-2xl shadow-sm border border-border/30">
+            <div className="flex justify-between items-center mb-2">
+              <span className="text-[14px] font-semibold text-primary">In Delivery</span>
+              <span className="text-[14px] font-semibold text-muted-foreground">Arrival in 12 mins</span>
+            </div>
+            <div className="w-full h-4 bg-blue-50 rounded-full overflow-hidden relative">
+              <div className="h-full w-3/4 bg-gradient-to-r from-primary to-accent rounded-full relative overflow-hidden">
+                <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
+              </div>
+            </div>
+            <div className="flex justify-between mt-3">
+              <span className="text-[12px] font-medium text-muted-foreground">Order Placed</span>
+              <span className="text-[12px] font-medium text-muted-foreground">Dispatched</span>
+              <span className="text-[12px] font-bold text-primary">Arriving</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Call to Action Section */}
+      <section className="px-5 md:px-0 py-12 text-center">
+        <div className="bg-primary/5 backdrop-blur-md p-8 md:p-12 rounded-3xl border border-primary/10 shadow-2xl overflow-hidden relative">
+          <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
+          <div className="relative z-10 space-y-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground">Ready for a refreshing change?</h2>
+            <p className="text-lg text-muted-foreground max-w-xl mx-auto">Join 10,000+ satisfied households and offices today. Get your first bottle free on subscriptions.</p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <button className="bg-primary text-primary-foreground px-8 py-4 rounded-full text-[14px] font-semibold hover:shadow-lg transition-all active:scale-95">Start Subscription</button>
+              <button className="border-2 border-primary text-primary px-8 py-4 rounded-full text-[14px] font-semibold hover:bg-primary/5 transition-all">Quick One-Time Order</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="hidden md:block py-12 border-t border-border mt-12">
+        <div className="max-w-7xl mx-auto px-5 grid grid-cols-4 gap-8">
+          <div className="space-y-4">
+            <span className="text-xl font-bold text-primary tracking-tight">HydroFlow</span>
+            <p className="text-[12px] font-medium text-muted-foreground">Delivering purity since 2018. The #1 water service for modern living.</p>
+          </div>
+          <div className="space-y-3">
+            <p className="text-[14px] font-semibold text-foreground">Company</p>
+            <ul className="text-[12px] font-medium text-muted-foreground space-y-2 cursor-pointer">
+              <li className="hover:text-primary transition-colors">About Us</li>
+              <li className="hover:text-primary transition-colors">Sustainability</li>
+              <li className="hover:text-primary transition-colors">Contact</li>
+            </ul>
+          </div>
+          <div className="space-y-3">
+            <p className="text-[14px] font-semibold text-foreground">Support</p>
+            <ul className="text-[12px] font-medium text-muted-foreground space-y-2 cursor-pointer">
+              <li className="hover:text-primary transition-colors">Help Center</li>
+              <li className="hover:text-primary transition-colors">Safety standards</li>
+              <li className="hover:text-primary transition-colors">Terms</li>
+            </ul>
+          </div>
+          <div className="space-y-3">
+            <p className="text-[14px] font-semibold text-foreground">Follow Us</p>
+            <div className="flex gap-4">
+              <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors cursor-pointer">
+                <span className="material-symbols-outlined text-[18px]">public</span>
+              </div>
+              <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors cursor-pointer">
+                <span className="material-symbols-outlined text-[18px]">share</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </main>
   )
 }
 

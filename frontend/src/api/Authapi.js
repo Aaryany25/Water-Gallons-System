@@ -18,7 +18,22 @@ export const loginUser = async (userData) => {
   return response.data;
 };
 
-export const getCurrentUser=async(userData)=>{
-    const response =await api.get("/user/me",userData);
+export const getCurrentUser=async()=>{
+    const response =await api.get("/user/me");
     return response.data
 }
+
+export const logoutUser = async () => {
+  const response = await api.post("/user/logout");
+  return response.data;
+};
+
+export const updateCurrentUser = async (userData) => {
+  const response = await api.patch("/user/edit", userData);
+  return response.data;
+};
+
+export const fetchAllUsers = async () => {
+  const response = await api.get("/user/alluser");
+  return response.data;
+};

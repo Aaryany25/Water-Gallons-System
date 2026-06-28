@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "moduleResolution": "bundler",
+    "moduleResolution":"bundler",
     "resolvePackageJsonImports": true
   }
 }

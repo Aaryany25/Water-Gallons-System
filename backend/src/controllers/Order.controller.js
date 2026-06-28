@@ -129,4 +129,53 @@ const cancelOrder = AsyncHandler(async (req, res) => {
     );
 });
 
-export { createOrder, getUserOrders, getOrderById, updateOrder, cancelOrder };
+const getAllOrdersAdmin = AsyncHandler(async (req, res) => {
+    const orders = await Order.find()
+        .populate("owner", "name email")
+        .populate("address")
+        .sort({ createdAt: -1 });
+
+    res.status(200).json(
+        new APIresponse(200, orders, "All orders fetched successfully")
+    );
+});
+
+const updateOrderStatusAdmin = AsyncHandler(async (req, res) => {
+    const { orderId } = req.params;
+    const { status, paymentStatus } = req.body;
+
+    if (!status && !paymentStatus) {
+        throw new APIerror(400, "Status or paymentStatus is required");
+    }
+
+    const updateFields = {};
+    if (status) {
+        if (!["pending", "confirmed", "delivered", "cancelled"].includes(status)) {
+            throw new APIerror(400, "Invalid order status");
+        }
+        updateFields.status = status;
+    }
+    if (paymentStatus) {
+        if (!["pending", "paid"].includes(paymentStatus)) {
+            throw new APIerror(400, "Invalid payment status");
+        }
+        updateFields.paymentStatus = paymentStatus;
+    }
+
+    const updatedOrder = await Order.findByIdAndUpdate(
+        orderId,
+        { $set: updateFields },
+        { new: true }
+    ).populate("address").populate("owner", "name email");
+
+    if (!updatedOrder) {
+        throw new APIerror(404, "Order not found");
+    }
+
+    res.status(200).json(
+        new APIresponse(200, updatedOrder, "Order updated successfully by admin")
+    );
+});
+
+export { createOrder, getUserOrders, getOrderById, updateOrder, cancelOrder, getAllOrdersAdmin, updateOrderStatusAdmin };
+
