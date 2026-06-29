@@ -20,6 +20,11 @@ const UserSchema = new Schema({
         type:Schema.Types.ObjectId,
         ref:"Address"
     },
+    role:{
+        type:String,
+        enum:["user","admin"],
+        default:"user"
+    },
 refreshToken:{
     type:String
 }

@@ -25,3 +25,10 @@ export const VerifyToken = AsyncHandler(async (req,res,next)=>{
         next(new APIerror(401, error.message))
     }
 })
+
+export const VerifyAdmin = AsyncHandler(async (req, res, next) => {
+    if (!req.user || req.user.role !== "admin") {
+        throw new APIerror(403, "Access denied: Admins only");
+    }
+    next();
+})
