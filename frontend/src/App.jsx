@@ -12,6 +12,7 @@ import Profile from './pages/Profile'
 import Admin from './pages/Admin'
 import Addresses from './pages/Addresses'
 import useAuthStore from './store/AuthStore'
+import AdminRoute from './components/AdminRoute'
 
 function App() {
   const getUser = useAuthStore((state) => state.getUser);
@@ -61,9 +62,9 @@ function App() {
           </ProtectedRoute>
         } />
         <Route path='/admin' element={
-          <ProtectedRoute>
+          <AdminRoute>
             <Admin />
-          </ProtectedRoute>
+          </AdminRoute>
         } />
       </Routes>
     </>

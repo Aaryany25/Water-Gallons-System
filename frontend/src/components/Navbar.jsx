@@ -20,7 +20,9 @@ function Navbar() {
               <Link to="/place-order" className="text-slate-500 dark:text-slate-400 hover:text-blue-600 hover:bg-blue-50/30 transition-colors text-[14px] font-sans px-2 rounded-md py-1">Place Order</Link>
               <Link to="/orders" className="text-slate-500 dark:text-slate-400 hover:text-blue-600 hover:bg-blue-50/30 transition-colors text-[14px] font-sans px-2 rounded-md py-1">My Orders</Link>
               <Link to="/profile" className="text-slate-500 dark:text-slate-400 hover:text-blue-600 hover:bg-blue-50/30 transition-colors text-[14px] font-sans px-2 rounded-md py-1">Profile</Link>
-              <Link to="/admin" className="text-slate-500 dark:text-slate-400 hover:text-blue-600 hover:bg-blue-50/30 transition-colors text-[14px] font-sans px-2 rounded-md py-1">Admin Panel</Link>
+              {user?.role === "admin" && (
+                <Link to="/admin" className="text-slate-500 dark:text-slate-400 hover:text-blue-600 hover:bg-blue-50/30 transition-colors text-[14px] font-sans px-2 rounded-md py-1">Admin Panel</Link>
+              )}
             </>
           ) : (
             <>
