@@ -94,6 +94,26 @@ function Signup() {
                 <FieldError errors={errors.email ? [errors.email] : []} />
               </Field>
               <Field>
+                <FieldLabel htmlFor="phone">
+                  Phone Number
+                </FieldLabel>
+                <Input
+                  type="text"
+                  id="phone"
+                  {...register("phone", {
+                    required: "Phone number is required",
+                    pattern: {
+                      value: /^[0-9]{10,15}$/,
+                      message: "Please enter a valid phone number (10-15 digits)"
+                    }
+                  })}
+                  placeholder="Enter your phone number"
+                  disabled={isSubmitting}
+                  aria-invalid={!!errors.phone}
+                />
+                <FieldError errors={errors.phone ? [errors.phone] : []} />
+              </Field>
+              <Field>
                 <FieldLabel htmlFor="password">
                   Password
                 </FieldLabel>

@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import useOrderStore from '../store/OrderStore'
+import useToastStore from '../store/ToastStore'
 
 function Admin() {
   const { adminOrders, fetchAdminOrders, updateOrderStatus, loading: ordersLoading } = useOrderStore()
+  const addToast = useToastStore((state) => state.addToast)
 
   useEffect(() => {
     fetchAdminOrders()
@@ -12,8 +14,9 @@ function Admin() {
   const handleUpdateStatus = async (orderId, newStatus) => {
     try {
       await updateOrderStatus(orderId, { status: newStatus })
+      addToast(`Order #${orderId.slice(-6).toUpperCase()} status updated to: ${newStatus.toUpperCase()}`, "success")
     } catch (err) {
-      alert("Failed to update status: " + (err.response?.data?.message || err.message))
+      addToast("Failed to update status: " + (err.response?.data?.message || err.message), "error")
     }
   }
 

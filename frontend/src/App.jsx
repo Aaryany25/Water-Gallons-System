@@ -15,17 +15,58 @@ import AdminStats from './pages/AdminStats'
 import OrderDetails from './pages/OrderDetails'
 import useAuthStore from './store/AuthStore'
 import AdminRoute from './components/AdminRoute'
+import Toaster from './components/Toaster'
+import useToastStore from './store/ToastStore'
+import useOrderStore from './store/OrderStore'
+import { getOrders } from './api/Orderapi'
 
 function App() {
   const getUser = useAuthStore((state) => state.getUser);
+  const user = useAuthStore((state) => state.user);
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
 
   useEffect(() => {
     getUser();
   }, [getUser]);
 
+  // Background polling for order status changes (only for regular users)
+  useEffect(() => {
+    if (!isAuthenticated || !user || user.role === 'admin') return;
+
+    // Fetch initial user orders
+    useOrderStore.getState().fetchUserOrders();
+
+    const interval = setInterval(async () => {
+      try {
+        const prevOrders = useOrderStore.getState().orders;
+        const response = await getOrders();
+        const nextOrders = response.data || [];
+
+        // Check if any order status has changed
+        nextOrders.forEach((newOrder) => {
+          const oldOrder = prevOrders.find((o) => o._id === newOrder._id);
+          if (oldOrder && oldOrder.status !== newOrder.status) {
+            useToastStore.getState().addToast(
+              `Order #${newOrder._id.slice(-6).toUpperCase()} status updated: ${newOrder.status.toUpperCase()}`,
+              newOrder.status === "cancelled" ? "error" : newOrder.status === "delivered" ? "success" : "info"
+            );
+          }
+        });
+
+        // Sync order store status
+        useOrderStore.setState({ orders: nextOrders });
+      } catch (err) {
+        console.error("Error polling order status:", err);
+      }
+    }, 6000); // Check every 6 seconds
+
+    return () => clearInterval(interval);
+  }, [isAuthenticated, user]);
+
   return (
     <>
       <Navbar />
+      <Toaster />
       <Routes> 
         <Route path='/' element={<Home />} />
         <Route path='/signup' element={

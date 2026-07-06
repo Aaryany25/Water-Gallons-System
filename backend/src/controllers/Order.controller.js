@@ -6,7 +6,7 @@ import { APIresponse } from "../utils/APIresponse.js";
 import { AsyncHandler } from "../utils/AsyncHandler.js";
 import { createOrderSchema, updateOrderSchema } from "../validators/order.schema.js";
 
-const RATE_PER_GALLON = 50;
+const RATE_PER_GALLON = 129;
 
 const createOrder = AsyncHandler(async (req, res) => {
     const validation = createOrderSchema.safeParse(req.body);

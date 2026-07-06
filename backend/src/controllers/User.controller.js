@@ -29,7 +29,7 @@ const registerUser = AsyncHandler(async(req,res)=>{
         throw new APIerror(400, validation.error.errors[0].message);
     }
 
-    const {name, email, password} = validation.data;
+    const {name, email, password, phone} = validation.data;
 
     const existUser = await User.findOne({email})
 
@@ -40,7 +40,8 @@ const registerUser = AsyncHandler(async(req,res)=>{
     const user = await User.create({
         name,
         email,
-        password
+        password,
+        phone
     })
 
     const createdUser = await User.findById(user._id).select("-password -refreshToken")
@@ -115,15 +116,16 @@ const getCurrentUser = AsyncHandler(async(req,res)=>{
 })
 
 const updateUser = AsyncHandler(async(req,res)=>{
-    const {name, email} = req.body
-    if(!name || !email){
-        throw new APIerror(400,"Name and email are required")
+    const {name, email, phone} = req.body
+    if(!name || !email || !phone){
+        throw new APIerror(400,"Name, email, and phone number are required")
     }
 
     await User.findByIdAndUpdate(req.user._id,{
         $set:{
             name,
-            email
+            email,
+            phone
         }
     },{
         new:true

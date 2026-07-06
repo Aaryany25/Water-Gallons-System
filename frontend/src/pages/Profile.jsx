@@ -16,6 +16,7 @@ function Profile() {
   const [isEditing, setIsEditing] = useState(false)
   const [editName, setEditName] = useState("")
   const [editEmail, setEditEmail] = useState("")
+  const [editPhone, setEditPhone] = useState("")
   const [editError, setEditError] = useState("")
   const [isSaving, setIsSaving] = useState(false)
 
@@ -26,6 +27,7 @@ function Profile() {
   const openEditModal = () => {
     setEditName(user?.name || "")
     setEditEmail(user?.email || "")
+    setEditPhone(user?.phone || "")
     setEditError("")
     setIsEditing(true)
   }
@@ -35,7 +37,7 @@ function Profile() {
     setIsSaving(true)
     setEditError("")
     try {
-      await updateUser({ name: editName, email: editEmail })
+      await updateUser({ name: editName, email: editEmail, phone: editPhone })
       setIsEditing(false)
     } catch (err) {
       console.error(err)
@@ -110,7 +112,7 @@ function Profile() {
                   <p className="text-[14px] font-semibold text-muted-foreground mb-1">Phone Number</p>
                   <div className="flex items-center gap-3">
                     <span className="material-symbols-outlined text-primary">call</span>
-                    <p className="text-[16px] text-foreground">+1 (555) 012-3456</p>
+                    <p className="text-[16px] text-foreground">{user?.phone || 'Not Provided'}</p>
                   </div>
                 </div>
                 <div>
@@ -234,6 +236,19 @@ function Profile() {
                   className="w-full px-3 py-2 border border-border rounded-lg bg-transparent text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm"
                   value={editEmail}
                   onChange={(e) => setEditEmail(e.target.value)}
+                  required
+                  disabled={isSaving}
+                />
+              </div>
+
+              <div className="flex flex-col gap-1.5">
+                <label htmlFor="edit-phone" className="text-sm font-semibold text-foreground">Phone Number</label>
+                <input
+                  id="edit-phone"
+                  type="text"
+                  className="w-full px-3 py-2 border border-border rounded-lg bg-transparent text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary text-sm"
+                  value={editPhone}
+                  onChange={(e) => setEditPhone(e.target.value)}
                   required
                   disabled={isSaving}
                 />

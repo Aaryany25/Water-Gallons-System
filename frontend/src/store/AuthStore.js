@@ -79,6 +79,7 @@ const useAuthStore = create(persist((set) => ({
         loading: false,
       });
     } catch (error) {
+      localStorage.removeItem("accesstoken");
       set({
         error:
           error.response?.data?.message ||
