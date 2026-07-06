@@ -116,22 +116,22 @@ function UserOrders() {
                 </span>
               </h3>
               {activeOrders.length === 0 ? (
-                <div className="bg-white p-6 rounded-xl border border-border/30 text-center text-muted-foreground text-sm font-medium">
+                <div className="bg-white dark:bg-slate-800/80 p-6 rounded-xl border border-border/30 dark:border-slate-700/50 text-center text-muted-foreground text-sm font-medium">
                   No active orders at the moment.
                 </div>
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {activeOrders.map((order) => (
-                    <div key={order._id} className="bg-white rounded-xl border border-border/40 shadow-sm p-6 flex flex-col justify-between">
+                    <div key={order._id} className="bg-white dark:bg-slate-800/80 rounded-xl border border-border/40 dark:border-slate-700/50 shadow-sm p-6 flex flex-col justify-between">
                       <div>
                         <div className="flex justify-between items-start mb-3">
                           <div>
                             <span className="text-[12px] font-medium text-muted-foreground block">
                               Ordered: {new Date(order.createdAt).toLocaleDateString()}
                             </span>
-                            <span className="text-[12px] font-semibold text-primary block">
+                            <Link to={`/orders/${order._id}`} className="text-[12px] font-semibold text-primary block hover:underline">
                               Order ID: #{order._id.slice(-6).toUpperCase()}
-                            </span>
+                            </Link>
                           </div>
                           <span className={`px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider rounded-full ${getStatusBadge(order.status)}`}>
                             {order.status}
@@ -152,7 +152,7 @@ function UserOrders() {
                         <div className="mb-4">
                           <div className="flex justify-between text-[11px] font-semibold mb-1">
                             <span className="text-primary">{getProgressLabel(order.status)}</span>
-                            <span className="text-muted-foreground">Amount: ${order.price.toFixed(2)}</span>
+                            <span className="text-muted-foreground">Amount: ₹{order.price.toFixed(2)}</span>
                           </div>
                           <div className="h-2 w-full bg-muted rounded-full overflow-hidden">
                             <div className={`h-full bg-gradient-to-r from-primary to-accent rounded-full ${getProgressWidth(order.status)}`}></div>
@@ -160,14 +160,23 @@ function UserOrders() {
                         </div>
                       </div>
 
-                      {order.status === "pending" && (
-                        <button
-                          onClick={() => handleCancelOrder(order._id)}
-                          className="w-full mt-2 bg-destructive/10 text-destructive hover:bg-destructive hover:text-white py-2 rounded-lg text-xs font-bold transition-all cursor-pointer"
+                      <div className="flex gap-2 mt-2">
+                        <Link 
+                          to={`/orders/${order._id}`}
+                          className="flex-1 bg-blue-50 hover:bg-blue-100 text-blue-600 text-center py-2 rounded-lg text-xs font-bold transition-all active:scale-95 flex items-center justify-center gap-1.5"
                         >
-                          Cancel Order
-                        </button>
-                      )}
+                          <span className="material-symbols-outlined text-[16px]">visibility</span>
+                          Track Details
+                        </Link>
+                        {order.status === "pending" && (
+                          <button
+                            onClick={() => handleCancelOrder(order._id)}
+                            className="flex-1 bg-destructive/10 text-destructive hover:bg-destructive hover:text-white py-2 rounded-lg text-xs font-bold transition-all cursor-pointer"
+                          >
+                            Cancel Order
+                          </button>
+                        )}
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -183,20 +192,23 @@ function UserOrders() {
                 </span>
               </h3>
               {completedOrders.length === 0 ? (
-                <div className="bg-white p-6 rounded-xl border border-border/30 text-center text-muted-foreground text-sm font-medium">
+                <div className="bg-white dark:bg-slate-800/80 p-6 rounded-xl border border-border/30 dark:border-slate-700/50 text-center text-muted-foreground text-sm font-medium">
                   No completed or cancelled orders.
                 </div>
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {completedOrders.map((order) => (
-                    <div key={order._id} className="bg-white rounded-xl border border-border/30 p-6 flex flex-col justify-between hover:border-primary/20 transition-all">
+                    <div key={order._id} className="bg-white dark:bg-slate-800/80 rounded-xl border border-border/30 dark:border-slate-700/50 p-6 flex flex-col justify-between hover:border-primary/20 transition-all">
                       <div>
                         <div className="flex justify-between items-start mb-4">
                           <div>
                             <span className="text-[12px] font-medium text-muted-foreground block">
                               {new Date(order.createdAt).toLocaleDateString()}
                             </span>
-                            <h4 className="text-sm font-bold text-foreground">{order.gallons}x 20L Spring Water</h4>
+                            <Link to={`/orders/${order._id}`} className="text-sm font-bold text-foreground hover:text-primary transition-colors block hover:underline">
+                              {order.gallons}x 20L Spring Water
+                            </Link>
+                            <span className="text-[10px] text-muted-foreground">ID: #{order._id.slice(-6).toUpperCase()}</span>
                           </div>
                           <span className={`px-2 py-0.5 text-[10px] font-bold uppercase rounded-full ${getStatusBadge(order.status)}`}>
                             {order.status}
@@ -204,7 +216,7 @@ function UserOrders() {
                         </div>
                         <div className="text-[12px] text-muted-foreground space-y-1 mb-4">
                           <p>
-                            <span className="font-semibold text-foreground">Total:</span> ${order.price.toFixed(2)} ({order.paymentMethod === 'cash' ? 'Cash' : 'Online'})
+                            <span className="font-semibold text-foreground">Total:</span> ₹{order.price.toFixed(2)} ({order.paymentMethod === 'cash' ? 'Cash' : 'Online'})
                           </p>
                           {order.address && (
                             <p className="truncate">
@@ -213,13 +225,22 @@ function UserOrders() {
                           )}
                         </div>
                       </div>
-                      <Link
-                        to="/place-order"
-                        className="w-full bg-blue-50 text-blue-600 hover:bg-blue-100 text-center py-2.5 rounded-lg text-xs font-bold transition-all active:scale-95 flex items-center justify-center gap-1.5"
-                      >
-                        <span className="material-symbols-outlined text-[16px]">replay</span>
-                        Reorder
-                      </Link>
+                      <div className="flex gap-2">
+                        <Link
+                          to={`/orders/${order._id}`}
+                          className="flex-1 bg-slate-50 hover:bg-slate-100 text-slate-600 text-center py-2 rounded-lg text-xs font-bold transition-all active:scale-95 flex items-center justify-center gap-1.5"
+                        >
+                          <span className="material-symbols-outlined text-[16px]">visibility</span>
+                          Details
+                        </Link>
+                        <Link
+                          to="/place-order"
+                          className="flex-1 bg-blue-50 text-blue-600 hover:bg-blue-100 text-center py-2.5 rounded-lg text-xs font-bold transition-all active:scale-95 flex items-center justify-center gap-1.5"
+                        >
+                          <span className="material-symbols-outlined text-[16px]">replay</span>
+                          Reorder
+                        </Link>
+                      </div>
                     </div>
                   ))}
                 </div>

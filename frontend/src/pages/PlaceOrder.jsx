@@ -36,7 +36,7 @@ function PlaceOrder() {
     }
   }, [defaultAddress, addresses])
 
-  const RATE_PER_GALLON = 50
+  const RATE_PER_GALLON = 129
   const DELIVERY_FEE = 5
   const totalAmount = (gallons * RATE_PER_GALLON) + DELIVERY_FEE
 
@@ -98,7 +98,7 @@ function PlaceOrder() {
         {/* Quantity Selection Section */}
         <section className="space-y-3">
           <span className="text-[14px] font-semibold text-muted-foreground">Select Quantity</span>
-          <div className="bg-white/80 backdrop-blur-md rounded-xl p-6 flex items-center justify-between shadow-[0_4px_20px_rgba(0,119,255,0.06)] border border-blue-50">
+          <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-md rounded-xl p-6 flex items-center justify-between shadow-[0_4px_20px_rgba(0,119,255,0.06)] border border-blue-50 dark:border-slate-700/50">
             <div className="flex items-center gap-4">
               <div className="w-16 h-16 bg-accent/30 rounded-lg flex items-center justify-center">
                 <span className="material-symbols-outlined text-primary text-[32px]">water_drop</span>
@@ -112,7 +112,7 @@ function PlaceOrder() {
               <button 
                 type="button"
                 onClick={() => setGallons(prev => Math.max(1, prev - 1))}
-                className="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-primary transition-all active:scale-90 cursor-pointer"
+                className="w-10 h-10 rounded-full bg-white dark:bg-slate-700 shadow-sm flex items-center justify-center text-primary dark:text-blue-400 transition-all active:scale-90 cursor-pointer"
               >
                 <span className="material-symbols-outlined">remove</span>
               </button>
@@ -131,7 +131,7 @@ function PlaceOrder() {
         {/* Delivery Date & Time */}
         <section className="space-y-3">
           <span className="text-[14px] font-semibold text-muted-foreground">Delivery Schedule</span>
-          <div className="bg-white/80 backdrop-blur-md rounded-xl p-4 shadow-[0_4px_20px_rgba(0,119,255,0.06)] border border-blue-50">
+          <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-md rounded-xl p-4 shadow-[0_4px_20px_rgba(0,119,255,0.06)] border border-blue-50 dark:border-slate-700/50">
             {/* Date Picker Scroll */}
             <div className="flex gap-3 overflow-x-auto pb-4 scrollbar-hide">
               {dateOptions.map((date, idx) => {
@@ -146,7 +146,7 @@ function PlaceOrder() {
                     className={`flex-shrink-0 w-16 h-20 rounded-xl flex flex-col items-center justify-center gap-1 transition-all active:scale-95 cursor-pointer ${
                       isSelected 
                         ? "bg-primary text-white shadow-lg" 
-                        : "bg-muted text-muted-foreground hover:bg-slate-100"
+                        : "bg-muted dark:bg-slate-800 text-muted-foreground hover:bg-slate-100 dark:hover:bg-slate-700"
                     }`}
                   >
                     <span className={`text-[12px] font-medium ${isSelected ? "opacity-80" : ""}`}>{dayName}</span>
@@ -156,7 +156,7 @@ function PlaceOrder() {
               })}
             </div>
             {/* Time Slots */}
-            <div className="grid grid-cols-2 gap-3 pt-3 border-t border-blue-50/20">
+            <div className="grid grid-cols-2 gap-3 pt-3 border-t border-blue-50/20 dark:border-slate-700/30">
               <button
                 type="button"
                 onClick={() => setSelectedSlot("morning")}
@@ -194,7 +194,7 @@ function PlaceOrder() {
               Manage
             </Link>
           </div>
-          <div className="bg-white/80 backdrop-blur-md rounded-xl p-4 flex items-start gap-4 shadow-[0_4px_20px_rgba(0,119,255,0.06)] border border-blue-50">
+          <div className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-md rounded-xl p-4 flex items-start gap-4 shadow-[0_4px_20px_rgba(0,119,255,0.06)] border border-blue-50 dark:border-slate-700/50">
             <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center text-primary shrink-0">
               <span className="material-symbols-outlined">location_on</span>
             </div>
@@ -215,7 +215,7 @@ function PlaceOrder() {
                   className="w-full bg-transparent border-0 border-b border-border/40 font-sans focus:ring-0 text-[14px] text-muted-foreground outline-none font-medium mt-1 pb-1 cursor-pointer"
                 >
                   {addresses.map((addr) => (
-                    <option key={addr._id} value={addr._id} className="text-foreground">
+                    <option key={addr._id} value={addr._id} className="text-foreground dark:bg-slate-800">
                       {addr.roomNo}, {addr.building}, {addr.street}, {addr.city}
                     </option>
                   ))}
@@ -235,7 +235,7 @@ function PlaceOrder() {
               className={`flex items-center gap-3 p-3 rounded-lg border-2 font-semibold text-[14px] transition-all cursor-pointer ${
                 paymentMethod === "cash" 
                   ? "border-primary bg-primary/10 text-primary" 
-                  : "border-transparent bg-white/80 text-muted-foreground hover:border-border"
+                  : "border-transparent bg-white/80 dark:bg-slate-800/80 text-muted-foreground hover:border-border"
               }`}
             >
               <span className="material-symbols-outlined text-[18px]">payments</span>
@@ -243,15 +243,15 @@ function PlaceOrder() {
             </button>
             <button 
               type="button"
-              onClick={() => setPaymentMethod("online")}
-              className={`flex items-center gap-3 p-3 rounded-lg border-2 font-semibold text-[14px] transition-all cursor-pointer ${
-                paymentMethod === "online" 
-                  ? "border-primary bg-primary/10 text-primary" 
-                  : "border-transparent bg-white/80 text-muted-foreground hover:border-border"
-              }`}
+              disabled
+              className="flex items-center gap-3 p-3 rounded-lg border-2 border-transparent bg-slate-100 dark:bg-slate-800/40 text-slate-400 dark:text-slate-500 cursor-not-allowed opacity-60 font-semibold text-[14px]"
+              title="Online payment is currently pending integration."
             >
               <span className="material-symbols-outlined text-[18px]">credit_card</span>
-              Online Payment
+              <div className="flex flex-col items-start">
+                <span>Online Payment</span>
+                <span className="text-[9px] text-orange-500 font-bold uppercase tracking-wider">Pending Integration</span>
+              </div>
             </button>
           </div>
         </section>
@@ -263,34 +263,34 @@ function PlaceOrder() {
             placeholder="e.g. Leave at front door, ring doorbell once, etc."
             value={note}
             onChange={(e) => setNote(e.target.value)}
-            className="w-full bg-white/80 backdrop-blur-md rounded-xl p-4 shadow-[0_4px_20px_rgba(0,119,255,0.06)] border border-blue-50 focus:outline-none focus:ring-2 focus:ring-primary/20 text-sm font-sans"
+            className="w-full bg-white/80 dark:bg-slate-800/80 backdrop-blur-md rounded-xl p-4 shadow-[0_4px_20px_rgba(0,119,255,0.06)] border border-blue-50 dark:border-slate-700/50 focus:outline-none focus:ring-2 focus:ring-primary/20 text-sm font-sans text-foreground"
             rows={2}
           />
         </section>
 
         {/* Order Summary Card */}
-        <section className="bg-white/80 backdrop-blur-md rounded-xl p-4 bg-primary/5 border border-primary/10">
+        <section className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-md rounded-xl p-4 bg-primary/5 border border-primary/10 dark:border-slate-700/50">
           <h3 className="text-[14px] font-semibold text-primary mb-4">Order Summary</h3>
           <div className="space-y-2">
             <div className="flex justify-between text-[14px]">
               <span className="text-muted-foreground">{gallons}x 20L Water Bottles</span>
-              <span className="text-foreground font-semibold">${(gallons * RATE_PER_GALLON).toFixed(2)}</span>
+              <span className="text-foreground font-semibold">₹{(gallons * RATE_PER_GALLON).toFixed(2)}</span>
             </div>
             <div className="flex justify-between text-[14px]">
               <span className="text-muted-foreground">Delivery Fee</span>
-              <span className="text-foreground font-semibold">${DELIVERY_FEE.toFixed(2)}</span>
+              <span className="text-foreground font-semibold">₹{DELIVERY_FEE.toFixed(2)}</span>
             </div>
             <div className="h-px bg-primary/10 my-3"></div>
             <div className="flex justify-between text-[20px] font-semibold text-primary">
               <span>Total Amount</span>
-              <span>${totalAmount.toFixed(2)}</span>
+              <span>₹{totalAmount.toFixed(2)}</span>
             </div>
           </div>
         </section>
       </main>
 
       {/* Bottom Action Bar */}
-      <div className="fixed bottom-0 left-0 w-full bg-white/90 backdrop-blur-xl border-t border-blue-50/10 p-5 z-50">
+      <div className="fixed bottom-0 left-0 w-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border-t border-blue-50/10 dark:border-slate-800/50 p-5 z-50">
         <button
           type="button"
           onClick={handlePlaceOrder}

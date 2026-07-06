@@ -27,7 +27,12 @@ function Login() {
     setServerError("")
     try {
       await useAuthStore.getState().login(data)
-      navigate("/user")
+      const user = useAuthStore.getState().user
+      if (user?.role === "admin") {
+        navigate("/admin")
+      } else {
+        navigate("/user")
+      }
     } catch (error) {
       console.error("Login error:", error)
       setServerError(

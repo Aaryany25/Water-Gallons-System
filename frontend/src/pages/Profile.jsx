@@ -82,10 +82,10 @@ function Profile() {
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
           <section className="md:col-span-8 space-y-6">
-            <div className="bg-white p-8 rounded-xl shadow-[0_4px_20px_rgba(0,119,255,0.06)] border border-border/20 relative">
+            <div className="bg-white dark:bg-slate-800/80 p-8 rounded-xl shadow-[0_4px_20px_rgba(0,119,255,0.06)] border border-border/20 dark:border-slate-700/50 relative">
               <button 
                 onClick={openEditModal}
-                className="absolute top-8 right-8 flex items-center gap-2 px-4 py-2 bg-blue-50 text-primary font-semibold text-[14px] rounded-full hover:bg-blue-100 transition-colors active:scale-95 cursor-pointer"
+                className="absolute top-8 right-8 flex items-center gap-2 px-4 py-2 bg-blue-50 dark:bg-blue-950/20 text-primary dark:text-blue-400 font-semibold text-[14px] rounded-full hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-colors active:scale-95 cursor-pointer"
               >
                 <span className="material-symbols-outlined text-[18px]">edit</span>
                 Edit Profile
@@ -135,9 +135,9 @@ function Profile() {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <Link to="/profile/addresses" className="group bg-white p-6 rounded-xl shadow-[0_4px_20px_rgba(0,119,255,0.06)] border border-border/10 hover:border-primary/40 transition-all">
+              <Link to="/profile/addresses" className="group bg-white dark:bg-slate-800/80 p-6 rounded-xl shadow-[0_4px_20px_rgba(0,119,255,0.06)] border border-border/10 dark:border-slate-700/50 hover:border-primary/40 transition-all">
                 <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 bg-blue-50 text-primary rounded-xl flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+                  <div className="w-12 h-12 bg-blue-50 dark:bg-blue-950/20 text-primary dark:text-blue-400 rounded-xl flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
                     <span className="material-symbols-outlined">home_pin</span>
                   </div>
                   <span className="material-symbols-outlined text-muted-foreground group-hover:translate-x-1 transition-transform">chevron_right</span>
@@ -145,9 +145,9 @@ function Profile() {
                 <h4 className="text-[20px] font-semibold mb-1 text-foreground">Saved Addresses</h4>
                 <p className="text-[12px] text-muted-foreground">Manage saved delivery locations</p>
               </Link>
-              <Link to="/profile/payments" className="group bg-white p-6 rounded-xl shadow-[0_4px_20px_rgba(0,119,255,0.06)] border border-border/10 hover:border-primary/40 transition-all">
+              <Link to="/profile/payments" className="group bg-white dark:bg-slate-800/80 p-6 rounded-xl shadow-[0_4px_20px_rgba(0,119,255,0.06)] border border-border/10 dark:border-slate-700/50 hover:border-primary/40 transition-all">
                 <div className="flex items-center justify-between mb-4">
-                  <div className="w-12 h-12 bg-blue-50 text-primary rounded-xl flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+                  <div className="w-12 h-12 bg-blue-50 dark:bg-blue-950/20 text-primary dark:text-blue-400 rounded-xl flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
                     <span className="material-symbols-outlined">credit_card</span>
                   </div>
                   <span className="material-symbols-outlined text-muted-foreground group-hover:translate-x-1 transition-transform">chevron_right</span>
@@ -176,10 +176,10 @@ function Profile() {
               </div>
             </div>
 
-            <div className="bg-white p-6 rounded-xl shadow-[0_4px_20px_rgba(0,119,255,0.06)] border border-border/10">
+            <div className="bg-white dark:bg-slate-800/80 p-6 rounded-xl shadow-[0_4px_20px_rgba(0,119,255,0.06)] border border-border/10 dark:border-slate-700/50">
               <h4 className="text-[14px] font-semibold text-muted-foreground uppercase tracking-wider mb-4">Support</h4>
               <div className="space-y-3">
-                <button className="w-full flex items-center gap-4 p-4 hover:bg-muted rounded-lg transition-colors group">
+                <button className="w-full flex items-center gap-4 p-4 hover:bg-muted dark:hover:bg-slate-700/50 rounded-lg transition-colors group">
                   <span className="material-symbols-outlined text-primary">help_outline</span>
                   <span className="text-[16px] text-foreground">Help Center</span>
                   <span className="material-symbols-outlined ml-auto text-muted-foreground group-hover:translate-x-1 transition-transform">chevron_right</span>
@@ -200,7 +200,7 @@ function Profile() {
       {/* Edit Profile Modal */}
       {isEditing && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4" role="dialog">
-          <div className="bg-white border border-border rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4 animate-in fade-in zoom-in-95 duration-200">
+          <div className="bg-white dark:bg-slate-800 border border-border dark:border-slate-700/50 rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4 animate-in fade-in zoom-in-95 duration-200">
             <div>
               <h3 className="text-xl font-bold text-foreground">Edit Profile</h3>
               <p className="text-sm text-muted-foreground">Update your name and email address below.</p>
@@ -270,10 +270,6 @@ function Profile() {
         <Link to="/orders" className="flex flex-col items-center justify-center text-muted-foreground hover:text-primary transition-colors">
           <span className="material-symbols-outlined mb-1">reorder</span>
           Orders
-        </Link>
-        <Link to="/plan" className="flex flex-col items-center justify-center text-muted-foreground hover:text-primary transition-colors">
-          <span className="material-symbols-outlined mb-1">water_drop</span>
-          Plan
         </Link>
         <Link to="/profile" className="flex flex-col items-center justify-center text-primary bg-primary/10 rounded-xl px-3 py-1 scale-90 duration-150">
           <span className="material-symbols-outlined mb-1">person</span>

@@ -13,7 +13,7 @@ const GuestRoute = ({ children }) => {
   }
 
   if (user) {
-    return <Navigate to="/user" replace />;
+    return <Navigate to={user.role === "admin" ? "/admin" : "/user"} replace />;
   }
 
   return children;

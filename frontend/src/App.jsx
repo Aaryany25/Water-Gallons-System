@@ -11,6 +11,8 @@ import UserOrders from './pages/UserOrders'
 import Profile from './pages/Profile'
 import Admin from './pages/Admin'
 import Addresses from './pages/Addresses'
+import AdminStats from './pages/AdminStats'
+import OrderDetails from './pages/OrderDetails'
 import useAuthStore from './store/AuthStore'
 import AdminRoute from './components/AdminRoute'
 
@@ -51,6 +53,11 @@ function App() {
             <UserOrders />
           </ProtectedRoute>
         } />
+        <Route path='/orders/:orderId' element={
+          <ProtectedRoute>
+            <OrderDetails />
+          </ProtectedRoute>
+        } />
         <Route path='/profile' element={
           <ProtectedRoute>
             <Profile />
@@ -64,6 +71,11 @@ function App() {
         <Route path='/admin' element={
           <AdminRoute>
             <Admin />
+          </AdminRoute>
+        } />
+        <Route path='/admin/stats' element={
+          <AdminRoute>
+            <AdminStats />
           </AdminRoute>
         } />
       </Routes>

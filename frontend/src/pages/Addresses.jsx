@@ -119,8 +119,8 @@ function Addresses() {
             <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-primary"></div>
           </div>
         ) : addresses.length === 0 ? (
-          <div className="bg-white p-8 rounded-xl border border-dashed border-border text-center space-y-4">
-            <div className="w-16 h-16 bg-blue-50 text-primary rounded-full flex items-center justify-center mx-auto">
+          <div className="bg-white dark:bg-slate-800/80 p-8 rounded-xl border border-dashed border-border dark:border-slate-700/50 text-center space-y-4">
+            <div className="w-16 h-16 bg-blue-50 dark:bg-blue-950/20 text-primary dark:text-blue-400 rounded-full flex items-center justify-center mx-auto">
               <span className="material-symbols-outlined text-[32px]">home_pin</span>
             </div>
             <div>
@@ -139,10 +139,10 @@ function Addresses() {
             {addresses.map((addr) => (
               <div
                 key={addr._id}
-                className={`bg-white p-6 rounded-xl border transition-all flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 ${
+                className={`bg-white dark:bg-slate-800/80 p-6 rounded-xl border transition-all flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 ${
                   addr.isDefault
-                    ? "border-primary/50 shadow-md bg-blue-50/10"
-                    : "border-border/30 hover:border-primary/20 shadow-sm"
+                    ? "border-primary/50 shadow-md bg-blue-50/10 dark:bg-blue-950/5"
+                    : "border-border/30 dark:border-slate-700/30 hover:border-primary/20 shadow-sm"
                 }`}
               >
                 <div className="space-y-2 flex-1">
@@ -195,7 +195,7 @@ function Addresses() {
       {/* Add/Edit Modal */}
       {isEditing && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 backdrop-blur-sm p-4" role="dialog">
-          <div className="bg-white border border-border rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4 animate-in fade-in zoom-in-95 duration-200">
+          <div className="bg-white dark:bg-slate-800 border border-border dark:border-slate-700/50 rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4 animate-in fade-in zoom-in-95 duration-200">
             <div>
               <h3 className="text-xl font-bold text-foreground">
                 {currentAddress ? "Edit Address" : "Add Address"}
