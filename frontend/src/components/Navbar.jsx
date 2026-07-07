@@ -25,7 +25,7 @@ function Navbar() {
       <div className="flex justify-between items-center w-full px-5 h-16 max-w-7xl mx-auto">
         <Link to={user?.role === "admin" ? "/admin" : "/"} className="flex items-center gap-3">
           <span className="material-symbols-outlined text-blue-600 dark:text-blue-400">water_drop</span>
-          <span className="text-xl font-bold tracking-tight text-blue-600 dark:text-blue-400 font-h2">HydroFlow</span>
+          <span className="text-xl font-bold tracking-tight text-blue-600 dark:text-blue-400 font-h2">Go Gallon</span>
         </Link>
         <nav className="hidden md:flex gap-8 items-center">
           {user?.role !== "admin" && (
@@ -47,7 +47,7 @@ function Navbar() {
             )
           ) : (
             <>
-              <Link to="/login" className="text-slate-500 dark:text-slate-400 hover:text-blue-600 hover:bg-blue-50/30 transition-colors text-[14px] font-sans px-2 rounded-md py-1">Admin Login</Link>
+              <Link to="/login" className="text-slate-500 dark:text-slate-400 hover:text-blue-600 hover:bg-blue-50/30 transition-colors text-[14px] font-sans px-2 rounded-md py-1"> Signup</Link>
             </>
           )}
         </nav>

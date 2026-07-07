@@ -44,7 +44,7 @@ function AdminStats() {
             <span className="material-symbols-outlined">arrow_back</span>
             Back to Orders
           </Link>
-          <h1 className="text-xl font-bold tracking-tight text-blue-600 dark:text-blue-400 font-sans antialiased">HydroFlow Stats</h1>
+          <h1 className="text-xl font-bold tracking-tight text-blue-600 dark:text-blue-400 font-sans antialiased">Go Gallon Stats</h1>
           <div className="w-10 h-10 rounded-full overflow-hidden border border-primary/20">
             <img alt="Admin Avatar" src="https://ui-avatars.com/api/?name=Admin&background=0058bf&color=fff"/>
           </div>

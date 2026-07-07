@@ -26,7 +26,7 @@ function Admin() {
       <header className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg border-b border-blue-50 dark:border-slate-800 shadow-sm docked top-0 sticky z-50">
         <div className="flex justify-between items-center w-full px-5 h-16 max-w-7xl mx-auto">
           <div className="w-[100px]"></div>
-          <h1 className="text-xl font-bold tracking-tight text-blue-600 dark:text-blue-400 font-sans antialiased">HydroFlow Admin</h1>
+          <h1 className="text-xl font-bold tracking-tight text-blue-600 dark:text-blue-400 font-sans antialiased">Go Gallon Admin</h1>
           <div className="flex items-center gap-4">
             <Link to="/admin/stats" className="bg-primary text-primary-foreground font-semibold text-xs px-4 py-2 rounded-lg hover:bg-primary/95 transition-all flex items-center gap-1.5 shadow-sm">
               <span className="material-symbols-outlined text-[16px]">bar_chart</span>

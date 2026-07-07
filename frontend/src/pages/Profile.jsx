@@ -68,7 +68,7 @@ function Profile() {
           <Link to="/" className="p-2 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors rounded-full active:opacity-80 active:scale-95">
             <span className="material-symbols-outlined text-blue-600">arrow_back</span>
           </Link>
-          <h1 className="text-xl font-bold tracking-tight text-blue-600 dark:text-blue-400">HydroFlow</h1>
+          <h1 className="text-xl font-bold tracking-tight text-blue-600 dark:text-blue-400">Go Gallon</h1>
         </div>
         <div className="flex items-center gap-3">
           <span className="hidden md:block text-[14px] font-semibold text-muted-foreground">{user?.name || 'Alex Rivers'}</span>
