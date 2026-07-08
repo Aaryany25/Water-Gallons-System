@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "/api/v1",
+  baseURL: import.meta.env.VITE_API_BASE_URL || "https://gallon-go-backend.onrender.com/api/v1",
   withCredentials: true, // for cookies/auth
   headers: {
     "Content-Type": "application/json",
