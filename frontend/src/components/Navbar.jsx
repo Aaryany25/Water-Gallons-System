@@ -48,6 +48,8 @@ function Navbar() {
           ) : (
             <>
               <Link to="/signup" className="text-slate-500 dark:text-slate-400 hover:text-blue-600 hover:bg-blue-50/30 transition-colors text-[14px] font-sans px-2 rounded-md py-1"> Signup</Link>
+              <Link to="/login" className="text-slate-500 dark:text-slate-400 hover:text-blue-600 hover:bg-blue-50/30 transition-colors text-[14px] font-sans px-2 rounded-md py-1"> Login</Link>
+
             </>
           )}
         </nav>
