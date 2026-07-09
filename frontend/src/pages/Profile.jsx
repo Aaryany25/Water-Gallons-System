@@ -42,8 +42,8 @@ function Profile() {
     } catch (err) {
       console.error(err)
       setEditError(
-        err.response?.data?.message || 
-        err.message || 
+        err.response?.data?.message ||
+        err.message ||
         "Failed to update profile."
       )
     } finally {
@@ -68,11 +68,11 @@ function Profile() {
           <Link to="/" className="p-2 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors rounded-full active:opacity-80 active:scale-95">
             <span className="material-symbols-outlined text-blue-600">arrow_back</span>
           </Link>
-          <h1 className="text-xl font-bold tracking-tight text-blue-600 dark:text-blue-400">Go Gallon</h1>
+          <h1 className="text-xl font-bold tracking-tight text-blue-600 dark:text-blue-400">Gallon Go </h1>
         </div>
         <div className="flex items-center gap-3">
           <span className="hidden md:block text-[14px] font-semibold text-muted-foreground">{user?.name || 'Alex Rivers'}</span>
-          <img alt="User profile photo" className="w-10 h-10 rounded-full border-2 border-primary/20 object-cover" src="https://ui-avatars.com/api/?name=User&background=0058bf&color=fff"/>
+          <img alt="User profile photo" className="w-10 h-10 rounded-full border-2 border-primary/20 object-cover" src="https://ui-avatars.com/api/?name=User&background=0058bf&color=fff" />
         </div>
       </header>
 
@@ -85,7 +85,7 @@ function Profile() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
           <section className="md:col-span-8 space-y-6">
             <div className="bg-white dark:bg-slate-800/80 p-8 rounded-xl shadow-[0_4px_20px_rgba(0,119,255,0.06)] border border-border/20 dark:border-slate-700/50 relative">
-              <button 
+              <button
                 onClick={openEditModal}
                 className="absolute top-8 right-8 flex items-center gap-2 px-4 py-2 bg-blue-50 dark:bg-blue-950/20 text-primary dark:text-blue-400 font-semibold text-[14px] rounded-full hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-colors active:scale-95 cursor-pointer"
               >
@@ -94,7 +94,7 @@ function Profile() {
               </button>
               <div className="flex flex-col md:flex-row gap-8 items-start md:items-center mb-8">
                 <div className="relative">
-                  <img alt="Profile picture" className="w-24 h-24 rounded-full border-4 border-muted object-cover" src="https://ui-avatars.com/api/?name=User&background=0058bf&color=fff"/>
+                  <img alt="Profile picture" className="w-24 h-24 rounded-full border-4 border-muted object-cover" src="https://ui-avatars.com/api/?name=User&background=0058bf&color=fff" />
                   <div className="absolute bottom-0 right-0 bg-primary p-1 rounded-full border-2 border-white">
                     <span className="material-symbols-outlined text-white text-[16px]">verified</span>
                   </div>
@@ -127,8 +127,8 @@ function Profile() {
                   <div className="flex items-start gap-3">
                     <span className="material-symbols-outlined text-primary mt-1">location_on</span>
                     <p className="text-[16px] text-foreground">
-                      {defaultAddress 
-                        ? `${defaultAddress.roomNo}, ${defaultAddress.building}, ${defaultAddress.street}, ${defaultAddress.city} - ${defaultAddress.pincode}` 
+                      {defaultAddress
+                        ? `${defaultAddress.roomNo}, ${defaultAddress.building}, ${defaultAddress.street}, ${defaultAddress.city} - ${defaultAddress.pincode}`
                         : "No default address set. Please add a saved address below."}
                     </p>
                   </div>
@@ -186,7 +186,7 @@ function Profile() {
                   <span className="text-[16px] text-foreground">Help Center</span>
                   <span className="material-symbols-outlined ml-auto text-muted-foreground group-hover:translate-x-1 transition-transform">chevron_right</span>
                 </button>
-                <button 
+                <button
                   onClick={handleLogout}
                   className="w-full flex items-center gap-4 p-4 hover:bg-destructive/10 rounded-lg transition-colors group text-destructive cursor-pointer active:scale-[0.98]"
                 >
@@ -207,7 +207,7 @@ function Profile() {
               <h3 className="text-xl font-bold text-foreground">Edit Profile</h3>
               <p className="text-sm text-muted-foreground">Update your name and email address below.</p>
             </div>
-            
+
             {editError && (
               <div className="text-sm font-medium text-destructive bg-destructive/10 border border-destructive/20 rounded-lg p-2.5" role="alert">
                 {editError}

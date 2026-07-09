@@ -26,14 +26,14 @@ function Admin() {
       <header className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg border-b border-blue-50 dark:border-slate-800 shadow-sm docked top-0 sticky z-50">
         <div className="flex justify-between items-center w-full px-5 h-16 max-w-7xl mx-auto">
           <div className="w-[100px]"></div>
-          <h1 className="text-xl font-bold tracking-tight text-blue-600 dark:text-blue-400 font-sans antialiased">Go Gallon Admin</h1>
+          <h1 className="text-xl font-bold tracking-tight text-blue-600 dark:text-blue-400 font-sans antialiased">Gallon Go  Admin</h1>
           <div className="flex items-center gap-4">
             <Link to="/admin/stats" className="bg-primary text-primary-foreground font-semibold text-xs px-4 py-2 rounded-lg hover:bg-primary/95 transition-all flex items-center gap-1.5 shadow-sm">
               <span className="material-symbols-outlined text-[16px]">bar_chart</span>
               View Stats
             </Link>
             <div className="w-10 h-10 rounded-full overflow-hidden border border-primary/20">
-              <img alt="Admin Avatar" src="https://ui-avatars.com/api/?name=Admin&background=0058bf&color=fff"/>
+              <img alt="Admin Avatar" src="https://ui-avatars.com/api/?name=Admin&background=0058bf&color=fff" />
             </div>
           </div>
         </div>
@@ -66,7 +66,7 @@ function Admin() {
                   delivered: "bg-green-50 text-green-700 border-green-100",
                   cancelled: "bg-red-50 text-red-700 border-red-100",
                 }
-                
+
                 return (
                   <div key={order._id} className="bg-white/80 dark:bg-slate-800/80 backdrop-blur-md rounded-2xl p-5 shadow-[0_4px_20px_rgba(0,119,255,0.06)] border border-blue-50 dark:border-slate-700/50 flex flex-col md:flex-row justify-between gap-4">
                     <div className="space-y-2 flex-1">

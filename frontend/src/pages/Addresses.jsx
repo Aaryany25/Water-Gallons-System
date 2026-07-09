@@ -88,7 +88,7 @@ function Addresses() {
           <Link to="/profile" className="p-2 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors rounded-full active:opacity-80 active:scale-95">
             <span className="material-symbols-outlined text-blue-600">arrow_back</span>
           </Link>
-          <h1 className="text-xl font-bold tracking-tight text-blue-600 dark:text-blue-400">Go Gallon</h1>
+          <h1 className="text-xl font-bold tracking-tight text-blue-600 dark:text-blue-400">Gallon Go </h1>
         </div>
         <div className="flex items-center gap-3">
           <button
@@ -139,11 +139,10 @@ function Addresses() {
             {addresses.map((addr) => (
               <div
                 key={addr._id}
-                className={`bg-white dark:bg-slate-800/80 p-6 rounded-xl border transition-all flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 ${
-                  addr.isDefault
+                className={`bg-white dark:bg-slate-800/80 p-6 rounded-xl border transition-all flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 ${addr.isDefault
                     ? "border-primary/50 shadow-md bg-blue-50/10 dark:bg-blue-950/5"
                     : "border-border/30 dark:border-slate-700/30 hover:border-primary/20 shadow-sm"
-                }`}
+                  }`}
               >
                 <div className="space-y-2 flex-1">
                   <div className="flex items-center gap-2">

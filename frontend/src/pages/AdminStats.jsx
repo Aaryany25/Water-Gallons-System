@@ -44,9 +44,9 @@ function AdminStats() {
             <span className="material-symbols-outlined">arrow_back</span>
             Back to Orders
           </Link>
-          <h1 className="text-xl font-bold tracking-tight text-blue-600 dark:text-blue-400 font-sans antialiased">Go Gallon Stats</h1>
+          <h1 className="text-xl font-bold tracking-tight text-blue-600 dark:text-blue-400 font-sans antialiased">Gallon Go  Stats</h1>
           <div className="w-10 h-10 rounded-full overflow-hidden border border-primary/20">
-            <img alt="Admin Avatar" src="https://ui-avatars.com/api/?name=Admin&background=0058bf&color=fff"/>
+            <img alt="Admin Avatar" src="https://ui-avatars.com/api/?name=Admin&background=0058bf&color=fff" />
           </div>
         </div>
       </header>
@@ -119,10 +119,10 @@ function AdminStats() {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
                 {users.map((user) => (
                   <div key={user._id} className="flex items-center gap-4 p-4 rounded-xl bg-slate-50/50 dark:bg-slate-900/30 border border-slate-100 dark:border-slate-800/50 hover:shadow-md transition-shadow">
-                    <img 
-                      className="w-12 h-12 rounded-full object-cover border border-primary/10 shrink-0" 
-                      src={`https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=0058bf&color=fff`} 
-                      alt="avatar" 
+                    <img
+                      className="w-12 h-12 rounded-full object-cover border border-primary/10 shrink-0"
+                      src={`https://ui-avatars.com/api/?name=${encodeURIComponent(user.name)}&background=0058bf&color=fff`}
+                      alt="avatar"
                     />
                     <div className="min-w-0 flex-1">
                       <p className="text-sm font-bold truncate text-foreground">{user.name}</p>

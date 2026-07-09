@@ -115,7 +115,7 @@ function Home() {
       <footer className="hidden md:block py-12 border-t border-border dark:border-slate-800 mt-12">
         <div className="max-w-7xl mx-auto px-5 grid grid-cols-4 gap-8">
           <div className="space-y-4">
-            <span className="text-xl font-bold text-primary dark:text-blue-400 tracking-tight">Go Gallon</span>
+            <span className="text-xl font-bold text-primary dark:text-blue-400 tracking-tight">Gallon Go </span>
             <p className="text-[12px] font-medium text-muted-foreground">Delivering purity since 2018. The #1 water service for modern living.</p>
           </div>
           <div className="space-y-3">

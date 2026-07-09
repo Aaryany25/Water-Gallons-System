@@ -4,28 +4,35 @@ import cookieParser from "cookie-parser"
 
 const app = express()
 
-// const allowedOrigins = (process.env.CORS_ORIGIN || "")
-//   .split(",")
-//   .map((origin) => origin.trim())
-//   .filter(Boolean)
+const allowedOrigins = [
+  "https://gallon-go.vercel.app",
+  ...(process.env.CORS_ORIGIN || "")
+    .split(",")
+    .map((origin) => origin.trim())
+    .filter(Boolean)
+];
 
-// const corsOptions = {
-//   origin: function (origin, callback) {
-//     // Allow requests with no origin (like mobile apps or curl requests)
-//     if (!origin) return callback(null, true);
-    
-//     if (allowedOrigins.includes(origin)) {
-//       callback(null, true);
-//     } else {
-//       console.warn(`CORS blocked for origin: ${origin}`);
-//       callback(new Error('Not allowed by CORS'));
-//     }
-//   },
-//   credentials: true,
-//   methods: ["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],
-// }
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // Allow requests with no origin (like mobile apps, curl, or postman)
+      if (!origin) return callback(null, true);
 
-app.use(cors({origin:process.env.CORS_ORIGIN, credentials:true}))
+      const isAllowed = allowedOrigins.includes(origin) || allowedOrigins.includes("*");
+      const isLocalhost = origin.startsWith("http://localhost:") || origin.startsWith("http://127.0.0.1:");
+
+      if (isAllowed || isLocalhost) {
+        callback(null, true);
+      } else {
+        console.warn(`CORS blocked for origin: ${origin}`);
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+    methods: ["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 app.use(express.json())
 app.use(cookieParser())
 

@@ -79,11 +79,11 @@ function UserOrders() {
           <Link to="/" className="p-2 hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors rounded-full active:opacity-80 active:scale-95">
             <span className="material-symbols-outlined text-blue-600">arrow_back</span>
           </Link>
-          <h1 className="text-xl font-bold tracking-tight text-blue-600 dark:text-blue-400">Go Gallon</h1>
+          <h1 className="text-xl font-bold tracking-tight text-blue-600 dark:text-blue-400">Gallon Go </h1>
         </div>
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-full overflow-hidden border border-primary/20">
-            <img alt="User profile photo" className="w-full h-full object-cover" src="https://ui-avatars.com/api/?name=User&background=0058bf&color=fff"/>
+            <img alt="User profile photo" className="w-full h-full object-cover" src="https://ui-avatars.com/api/?name=User&background=0058bf&color=fff" />
           </div>
         </div>
       </header>
@@ -141,10 +141,10 @@ function UserOrders() {
                         <p className="text-sm text-muted-foreground mb-4">
                           Delivery ETA: {new Date(order.deliveryTime).toLocaleString('en-US', { dateStyle: 'short', timeStyle: 'short' })}
                         </p>
-                        
+
                         {order.address && (
                           <div className="bg-slate-50 dark:bg-slate-900/40 p-3 rounded-lg text-[13px] text-muted-foreground mb-4">
-                            <strong className="text-foreground">Delivery Address:</strong><br/>
+                            <strong className="text-foreground">Delivery Address:</strong><br />
                             {order.address.roomNo}, {order.address.building}, {order.address.street}, {order.address.city}
                           </div>
                         )}
@@ -161,7 +161,7 @@ function UserOrders() {
                       </div>
 
                       <div className="flex gap-2 mt-2">
-                        <Link 
+                        <Link
                           to={`/orders/${order._id}`}
                           className="flex-1 bg-blue-50 hover:bg-blue-100 text-blue-600 text-center py-2 rounded-lg text-xs font-bold transition-all active:scale-95 flex items-center justify-center gap-1.5"
                         >
